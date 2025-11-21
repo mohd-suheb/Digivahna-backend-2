@@ -24,19 +24,19 @@ const qrVideosRoutes = require("./routes/qrVideos.route.js");
 // const uploadRoutes = require("./routes/upload.route.js");
 // const userDeletionRoutes = require("./routes/userDeletion.route.js");
 // const updateUserRoutes = require("./routes/updateUser.route.js");
-const emergencyContactRoutes = require("./routes/emergencyContact.route.js");
-const addressbookRoutes = require("./routes/addressbook.route.js");
-const primaryContactRoutes = require("./routes/primaryContact.route.js");
-const changePasswordRoutes = require("./routes/changePassword.route.js");
-const getDetailsRoutes = require("./routes/getDetails.route.js");
-const notificationRoutes = require("./routes/notification.route.js");
-const notificationListRoutes = require("./routes/notificationList.route.js");
+// const emergencyContactRoutes = require("./routes/emergencyContact.route.js");
+// const addressbookRoutes = require("./routes/addressbook.route.js");
+// const primaryContactRoutes = require("./routes/primaryContact.route.js");
+// const changePasswordRoutes = require("./routes/changePassword.route.js");
+// const getDetailsRoutes = require("./routes/getDetails.route.js");
+// const notificationRoutes = require("./routes/notification.route.js");
+// const notificationListRoutes = require("./routes/notificationList.route.js");
 const accessCodeRoutes = require("./routes/accessCode.route.js");
-const vaultAccessRoutes = require("./routes/vaultAccess.route.js");
-const razorpayRoutes = require("./routes/razorpay.route.js");
-const orderRoutes = require("./routes/order.route.js");
-const reviewRoutes = require("./routes/review.route.js");
-const chatRoutes = require("./routes/chat.route.js");
+// const vaultAccessRoutes = require("./routes/vaultAccess.route.js");
+// const razorpayRoutes = require("./routes/razorpay.route.js");
+// const orderRoutes = require("./routes/order.route.js");
+// const reviewRoutes = require("./routes/review.route.js");
+// const chatRoutes = require("./routes/chat.route.js");
 
 const app = express();
 
@@ -83,19 +83,19 @@ app.use(FULL_ROUTES.QR_VIDEOS.BASE, qrVideosRoutes);
 // app.use(FULL_ROUTES.UPLOAD.BASE, uploadRoutes);
 // app.use(FULL_ROUTES.USER.BASE, userDeletionRoutes);
 // app.use(FULL_ROUTES.UPDATE_USER.BASE, updateUserRoutes);
-app.use(FULL_ROUTES.EMERGENCY_CONTACT.BASE, emergencyContactRoutes);
-app.use(FULL_ROUTES.ADDRESSBOOK.BASE, addressbookRoutes);
-app.use(FULL_ROUTES.PRIMARY_CONTACT.BASE, primaryContactRoutes);
-app.use(FULL_ROUTES.CHANGE_PASSWORD.BASE, changePasswordRoutes);
-app.use(FULL_ROUTES.GET_DETAILS.BASE, getDetailsRoutes);
-app.use(FULL_ROUTES.NOTIFICATION.BASE, notificationRoutes);
-app.use(FULL_ROUTES.NOTIFICATION_LIST.BASE, notificationListRoutes);
+// app.use(FULL_ROUTES.EMERGENCY_CONTACT.BASE, emergencyContactRoutes);
+// app.use(FULL_ROUTES.ADDRESSBOOK.BASE, addressbookRoutes);
+// app.use(FULL_ROUTES.PRIMARY_CONTACT.BASE, primaryContactRoutes);
+// app.use(FULL_ROUTES.CHANGE_PASSWORD.BASE, changePasswordRoutes);
+// app.use(FULL_ROUTES.GET_DETAILS.BASE, getDetailsRoutes);
+// app.use(FULL_ROUTES.NOTIFICATION.BASE, notificationRoutes);
+// app.use(FULL_ROUTES.NOTIFICATION_LIST.BASE, notificationListRoutes);
 app.use(FULL_ROUTES.ACCESS_CODE.BASE, accessCodeRoutes);
-app.use(FULL_ROUTES.VAULT_ACCESS.BASE, vaultAccessRoutes);
-app.use(FULL_ROUTES.RAZORPAY.BASE, razorpayRoutes);
-app.use(FULL_ROUTES.ORDER.BASE, orderRoutes);
-app.use(FULL_ROUTES.REVIEW.BASE, reviewRoutes);
-app.use(FULL_ROUTES.CHAT.BASE, chatRoutes);
+// app.use(FULL_ROUTES.VAULT_ACCESS.BASE, vaultAccessRoutes);
+// app.use(FULL_ROUTES.RAZORPAY.BASE, razorpayRoutes);
+// app.use(FULL_ROUTES.ORDER.BASE, orderRoutes);
+// app.use(FULL_ROUTES.REVIEW.BASE, reviewRoutes);
+// app.use(FULL_ROUTES.CHAT.BASE, chatRoutes);
 
 console.log("ENDPOINTS", {
   indexRoutes: API_ROUTES.BASE,
@@ -114,22 +114,23 @@ console.log("ENDPOINTS", {
   newsRoutes: API_ROUTES.NEWS.BASE,
   getNewsRoutes: API_ROUTES.GET_NEWS.BASE,
   qrVideosRoutes: API_ROUTES.QR_VIDEOS.BASE,
-  uploadRoutes: API_ROUTES.UPLOAD.BASE,
+  // uploadRoutes: API_ROUTES.UPLOAD.BASE,
   // userDeletionRoutes: API_ROUTES.USER.BASE,
   // updateUserRoutes: API_ROUTES.UPDATE_USER.BASE,
-  emergencyContactRoutes: API_ROUTES.EMERGENCY_CONTACT.BASE,
-  addressbookRoutes: API_ROUTES.ADDRESSBOOK.BASE,
-  primaryContactRoutes: API_ROUTES.PRIMARY_CONTACT.BASE,
-  changePasswordRoutes: API_ROUTES.CHANGE_PASSWORD.BASE,
-  getDetailsRoutes: API_ROUTES.GET_DETAILS.BASE,
-  notificationRoutes: API_ROUTES.NOTIFICATION.BASE,
-  notificationListRoutes: API_ROUTES.NOTIFICATION_LIST.BASE,
+  // emergencyContactRoutes: API_ROUTES.EMERGENCY_CONTACT.BASE,
+  // addressbookRoutes: API_ROUTES.ADDRESSBOOK.BASE,
+  // primaryContactRoutes: API_ROUTES.PRIMARY_CONTACT.BASE,
+  // changePasswordRoutes: API_ROUTES.CHANGE_PASSWORD.BASE,
+  // getDetailsRoutes: API_ROUTES.GET_DETAILS.BASE,
+  // notificationRoutes: API_ROUTES.NOTIFICATION.BASE,
+  // notificationListRoutes: API_ROUTES.NOTIFICATION_LIST.BASE,
   accessCodeRoutes: API_ROUTES.ACCESS_CODE.BASE,
-  vaultAccessRoutes: API_ROUTES.VAULT_ACCESS.BASE,
-  razorpayRoutes: API_ROUTES.RAZORPAY.BASE,
-  orderRoutes: API_ROUTES.ORDER.BASE,
-  reviewRoutes: API_ROUTES.REVIEW.BASE,
-  chatRoutes: API_ROUTES.CHAT.BASE,
+  // vaultAccessRoutes: API_ROUTES.VAULT_ACCESS.BASE,
+  // razorpayRoutes: API_ROUTES.RAZORPAY.BASE,
+  // orderRoutes: API_ROUTES.ORDER.BASE,
+  // reviewRoutes: API_ROUTES.REVIEW.BASE,
+  // chatRoutes: API_ROUTES.CHAT.BASE,
+
   API_ROUTES: API_ROUTES,
   FULL_ROUTES: FULL_ROUTES,
   INFO_MESSAGES: INFO_MESSAGES,
