@@ -7,7 +7,7 @@ const vehicleComparisonSchema = new mongoose.Schema(
       type: String,
       required: true,
       unique: true,
-      index: true,
+      // index: true,
     },
     car_1_id: {
       type: String,

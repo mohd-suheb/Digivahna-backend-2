@@ -22,7 +22,7 @@ const newsRoutes = require("./routes/news.route.js");
 const getNewsRoutes = require("./routes/getNews.route.js");
 const qrVideosRoutes = require("./routes/qrVideos.route.js");
 // const uploadRoutes = require("./routes/upload.route.js");
-const userDeletionRoutes = require("./routes/userDeletion.route.js");
+// const userDeletionRoutes = require("./routes/userDeletion.route.js");
 const updateUserRoutes = require("./routes/updateUser.route.js");
 const emergencyContactRoutes = require("./routes/emergencyContact.route.js");
 const addressbookRoutes = require("./routes/addressbook.route.js");
@@ -80,8 +80,8 @@ app.use(FULL_ROUTES.GET_TIPS.BASE, getTipsRoutes);
 app.use(FULL_ROUTES.NEWS.BASE, newsRoutes);
 app.use(FULL_ROUTES.GET_NEWS.BASE, getNewsRoutes);
 app.use(FULL_ROUTES.QR_VIDEOS.BASE, qrVideosRoutes);
-app.use(FULL_ROUTES.UPLOAD.BASE, uploadRoutes);
-app.use(FULL_ROUTES.USER.BASE, userDeletionRoutes);
+// app.use(FULL_ROUTES.UPLOAD.BASE, uploadRoutes);
+// app.use(FULL_ROUTES.USER.BASE, userDeletionRoutes);
 app.use(FULL_ROUTES.UPDATE_USER.BASE, updateUserRoutes);
 app.use(FULL_ROUTES.EMERGENCY_CONTACT.BASE, emergencyContactRoutes);
 app.use(FULL_ROUTES.ADDRESSBOOK.BASE, addressbookRoutes);
@@ -115,7 +115,7 @@ console.log("ENDPOINTS", {
   getNewsRoutes: API_ROUTES.GET_NEWS.BASE,
   qrVideosRoutes: API_ROUTES.QR_VIDEOS.BASE,
   uploadRoutes: API_ROUTES.UPLOAD.BASE,
-  userDeletionRoutes: API_ROUTES.USER.BASE,
+  // userDeletionRoutes: API_ROUTES.USER.BASE,
   updateUserRoutes: API_ROUTES.UPDATE_USER.BASE,
   emergencyContactRoutes: API_ROUTES.EMERGENCY_CONTACT.BASE,
   addressbookRoutes: API_ROUTES.ADDRESSBOOK.BASE,
