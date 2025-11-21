@@ -1,0 +1,633 @@
+{
+  "info": {
+    "name": "Upload Vehicle Document API",
+    "description": "Complete collection for uploading all types of vehicle documents",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "version": "1.0.0"
+  },
+  "item": [
+    {
+      "name": "Vehicle Documents",
+      "item": [
+        {
+          "name": "Upload Registration Document (RC)",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "user_id",
+                  "value": "sumitsaini576@gmail.com",
+                  "type": "text"
+                },
+                {
+                  "key": "vehicle_id",
+                  "value": "UP32AB1234",
+                  "type": "text"
+                },
+                {
+                  "key": "doc_type",
+                  "value": "vehicle_doc",
+                  "type": "text"
+                },
+                {
+                  "key": "doc_name",
+                  "value": "registration",
+                  "type": "text"
+                },
+                {
+                  "key": "doc_file",
+                  "type": "file",
+                  "src": []
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}/api/upload_vehicle_doc",
+              "host": ["{{base_url}}"],
+              "path": ["api", "upload_vehicle_doc"]
+            },
+            "description": "Upload Registration Certificate (RC) document"
+          },
+          "response": []
+        },
+        {
+          "name": "Upload Insurance Document",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "user_id",
+                  "value": "sumitsaini576@gmail.com",
+                  "type": "text"
+                },
+                {
+                  "key": "vehicle_id",
+                  "value": "UP32AB1234",
+                  "type": "text"
+                },
+                {
+                  "key": "doc_type",
+                  "value": "vehicle_doc",
+                  "type": "text"
+                },
+                {
+                  "key": "doc_name",
+                  "value": "insurance",
+                  "type": "text"
+                },
+                {
+                  "key": "doc_file",
+                  "type": "file",
+                  "src": []
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}/api/upload_vehicle_doc",
+              "host": ["{{base_url}}"],
+              "path": ["api", "upload_vehicle_doc"]
+            },
+            "description": "Upload Insurance document"
+          },
+          "response": []
+        },
+        {
+          "name": "Upload Pollution Certificate",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "user_id",
+                  "value": "sumitsaini576@gmail.com",
+                  "type": "text"
+                },
+                {
+                  "key": "vehicle_id",
+                  "value": "UP32AB1234",
+                  "type": "text"
+                },
+                {
+                  "key": "doc_type",
+                  "value": "vehicle_doc",
+                  "type": "text"
+                },
+                {
+                  "key": "doc_name",
+                  "value": "pollution",
+                  "type": "text"
+                },
+                {
+                  "key": "doc_file",
+                  "type": "file",
+                  "src": []
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}/api/upload_vehicle_doc",
+              "host": ["{{base_url}}"],
+              "path": ["api", "upload_vehicle_doc"]
+            },
+            "description": "Upload Pollution Certificate document"
+          },
+          "response": []
+        },
+        {
+          "name": "Upload Fitness Certificate",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "user_id",
+                  "value": "sumitsaini576@gmail.com",
+                  "type": "text"
+                },
+                {
+                  "key": "vehicle_id",
+                  "value": "UP32AB1234",
+                  "type": "text"
+                },
+                {
+                  "key": "doc_type",
+                  "value": "vehicle_doc",
+                  "type": "text"
+                },
+                {
+                  "key": "doc_name",
+                  "value": "fitness",
+                  "type": "text"
+                },
+                {
+                  "key": "doc_file",
+                  "type": "file",
+                  "src": []
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}/api/upload_vehicle_doc",
+              "host": ["{{base_url}}"],
+              "path": ["api", "upload_vehicle_doc"]
+            },
+            "description": "Upload Fitness Certificate document"
+          },
+          "response": []
+        },
+        {
+          "name": "Upload Permit Document",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "user_id",
+                  "value": "sumitsaini576@gmail.com",
+                  "type": "text"
+                },
+                {
+                  "key": "vehicle_id",
+                  "value": "UP32AB1234",
+                  "type": "text"
+                },
+                {
+                  "key": "doc_type",
+                  "value": "vehicle_doc",
+                  "type": "text"
+                },
+                {
+                  "key": "doc_name",
+                  "value": "permit",
+                  "type": "text"
+                },
+                {
+                  "key": "doc_file",
+                  "type": "file",
+                  "src": []
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}/api/upload_vehicle_doc",
+              "host": ["{{base_url}}"],
+              "path": ["api", "upload_vehicle_doc"]
+            },
+            "description": "Upload Permit document"
+          },
+          "response": []
+        }
+      ],
+      "description": "Vehicle document types: registration, insurance, pollution, fitness, permit"
+    },
+    {
+      "name": "Other Documents",
+      "item": [
+        {
+          "name": "Upload Aadhar Document",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "user_id",
+                  "value": "sumitsaini576@gmail.com",
+                  "type": "text"
+                },
+                {
+                  "key": "vehicle_id",
+                  "value": "UP32AB1234",
+                  "type": "text"
+                },
+                {
+                  "key": "doc_type",
+                  "value": "other",
+                  "type": "text"
+                },
+                {
+                  "key": "doc_name",
+                  "value": "Adhar",
+                  "type": "text"
+                },
+                {
+                  "key": "doc_number",
+                  "value": "1234 5678 9012",
+                  "type": "text"
+                },
+                {
+                  "key": "doc_file",
+                  "type": "file",
+                  "src": []
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}/api/upload_vehicle_doc",
+              "host": ["{{base_url}}"],
+              "path": ["api", "upload_vehicle_doc"]
+            },
+            "description": "Upload Aadhar document (requires doc_number)"
+          },
+          "response": []
+        },
+        {
+          "name": "Upload Driver License",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "user_id",
+                  "value": "sumitsaini576@gmail.com",
+                  "type": "text"
+                },
+                {
+                  "key": "vehicle_id",
+                  "value": "UP32AB1234",
+                  "type": "text"
+                },
+                {
+                  "key": "doc_type",
+                  "value": "other",
+                  "type": "text"
+                },
+                {
+                  "key": "doc_name",
+                  "value": "Driver License",
+                  "type": "text"
+                },
+                {
+                  "key": "doc_number",
+                  "value": "DL-1234567890",
+                  "type": "text"
+                },
+                {
+                  "key": "doc_file",
+                  "type": "file",
+                  "src": []
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}/api/upload_vehicle_doc",
+              "host": ["{{base_url}}"],
+              "path": ["api", "upload_vehicle_doc"]
+            },
+            "description": "Upload Driver License document (requires doc_number)"
+          },
+          "response": []
+        },
+        {
+          "name": "Upload PAN Card",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "user_id",
+                  "value": "sumitsaini576@gmail.com",
+                  "type": "text"
+                },
+                {
+                  "key": "vehicle_id",
+                  "value": "UP32AB1234",
+                  "type": "text"
+                },
+                {
+                  "key": "doc_type",
+                  "value": "other",
+                  "type": "text"
+                },
+                {
+                  "key": "doc_name",
+                  "value": "PAN Card",
+                  "type": "text"
+                },
+                {
+                  "key": "doc_number",
+                  "value": "ABCDE1234F",
+                  "type": "text"
+                },
+                {
+                  "key": "doc_file",
+                  "type": "file",
+                  "src": []
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}/api/upload_vehicle_doc",
+              "host": ["{{base_url}}"],
+              "path": ["api", "upload_vehicle_doc"]
+            },
+            "description": "Upload PAN Card document (requires doc_number)"
+          },
+          "response": []
+        },
+        {
+          "name": "Upload Passport",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "user_id",
+                  "value": "sumitsaini576@gmail.com",
+                  "type": "text"
+                },
+                {
+                  "key": "vehicle_id",
+                  "value": "UP32AB1234",
+                  "type": "text"
+                },
+                {
+                  "key": "doc_type",
+                  "value": "other",
+                  "type": "text"
+                },
+                {
+                  "key": "doc_name",
+                  "value": "Passport",
+                  "type": "text"
+                },
+                {
+                  "key": "doc_number",
+                  "value": "A1234567",
+                  "type": "text"
+                },
+                {
+                  "key": "doc_file",
+                  "type": "file",
+                  "src": []
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}/api/upload_vehicle_doc",
+              "host": ["{{base_url}}"],
+              "path": ["api", "upload_vehicle_doc"]
+            },
+            "description": "Upload Passport document (requires doc_number)"
+          },
+          "response": []
+        }
+      ],
+      "description": "Other document types (requires doc_number parameter)"
+    },
+    {
+      "name": "Examples with Phone Number",
+      "item": [
+        {
+          "name": "Upload Registration (Phone)",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "user_id",
+                  "value": "7404238772",
+                  "type": "text"
+                },
+                {
+                  "key": "vehicle_id",
+                  "value": "UP32AB1234",
+                  "type": "text"
+                },
+                {
+                  "key": "doc_type",
+                  "value": "vehicle_doc",
+                  "type": "text"
+                },
+                {
+                  "key": "doc_name",
+                  "value": "registration",
+                  "type": "text"
+                },
+                {
+                  "key": "doc_file",
+                  "type": "file",
+                  "src": []
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}/api/upload_vehicle_doc",
+              "host": ["{{base_url}}"],
+              "path": ["api", "upload_vehicle_doc"]
+            },
+            "description": "Upload Registration document using phone number as user_id"
+          },
+          "response": []
+        },
+        {
+          "name": "Upload Insurance (Phone)",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "user_id",
+                  "value": "7404238772",
+                  "type": "text"
+                },
+                {
+                  "key": "vehicle_id",
+                  "value": "UP32AB1234",
+                  "type": "text"
+                },
+                {
+                  "key": "doc_type",
+                  "value": "vehicle_doc",
+                  "type": "text"
+                },
+                {
+                  "key": "doc_name",
+                  "value": "insurance",
+                  "type": "text"
+                },
+                {
+                  "key": "doc_file",
+                  "type": "file",
+                  "src": []
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}/api/upload_vehicle_doc",
+              "host": ["{{base_url}}"],
+              "path": ["api", "upload_vehicle_doc"]
+            },
+            "description": "Upload Insurance document using phone number as user_id"
+          },
+          "response": []
+        }
+      ],
+      "description": "Examples using phone number instead of email"
+    },
+    {
+      "name": "Different Vehicles",
+      "item": [
+        {
+          "name": "Vehicle UP32AB1236 - Registration",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "user_id",
+                  "value": "sumitsaini576@gmail.com",
+                  "type": "text"
+                },
+                {
+                  "key": "vehicle_id",
+                  "value": "UP32AB1236",
+                  "type": "text"
+                },
+                {
+                  "key": "doc_type",
+                  "value": "vehicle_doc",
+                  "type": "text"
+                },
+                {
+                  "key": "doc_name",
+                  "value": "registration",
+                  "type": "text"
+                },
+                {
+                  "key": "doc_file",
+                  "type": "file",
+                  "src": []
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}/api/upload_vehicle_doc",
+              "host": ["{{base_url}}"],
+              "path": ["api", "upload_vehicle_doc"]
+            },
+            "description": "Upload document for vehicle UP32AB1236"
+          },
+          "response": []
+        },
+        {
+          "name": "Vehicle UP32AB1235 - Pollution",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "user_id",
+                  "value": "sumitsaini576@gmail.com",
+                  "type": "text"
+                },
+                {
+                  "key": "vehicle_id",
+                  "value": "UP32AB1235",
+                  "type": "text"
+                },
+                {
+                  "key": "doc_type",
+                  "value": "vehicle_doc",
+                  "type": "text"
+                },
+                {
+                  "key": "doc_name",
+                  "value": "pollution",
+                  "type": "text"
+                },
+                {
+                  "key": "doc_file",
+                  "type": "file",
+                  "src": []
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}/api/upload_vehicle_doc",
+              "host": ["{{base_url}}"],
+              "path": ["api", "upload_vehicle_doc"]
+            },
+            "description": "Upload pollution certificate for vehicle UP32AB1235"
+          },
+          "response": []
+        }
+      ],
+      "description": "Examples for different vehicles in the garage"
+    }
+  ],
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "https://digivahan.in",
+      "type": "string"
+    }
+  ]
+}

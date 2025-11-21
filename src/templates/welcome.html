@@ -1,0 +1,32 @@
+<html>
+<head>
+  <style>
+    body { font-family: Arial, sans-serif; color: #222; }
+    .container { padding: 20px; border: 1px solid #ddd; border-radius: 10px; }
+    .header { font-size: 20px; font-weight: bold; margin-bottom: 20px; color: #333; }
+    .content { font-size: 14px; line-height: 1.6; }
+    .signature { margin-top: 30px; }
+    .signature img { width: 120px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">Welcome to Digivahan Digital India Pvt. Ltd.</div>
+    <div class="content">
+      <p>Dear <strong>{{employee_name}}</strong>,</p>
+      <p>We are delighted to welcome you to <strong>Digivahan Digital India Pvt. Ltd.</strong> as a <strong>{{position}}</strong>.</p>
+      <p>Your employment will commence on <strong>{{start_date}}</strong> and you will be reporting to <strong>{{manager_name}}</strong>.</p>
+      <p>Please find attached your offer letter and other relevant documents. Kindly review them carefully and reach out to us if you have any questions.</p>
+      <p>We look forward to having you as part of our team and contributing to our success.</p>
+      <div class="signature">
+        <p>Best regards,</p>
+        <img src="{{digital_signature_url}}" alt="Signature">
+        <strong>{{sender_name}}</strong><br>
+        {{sender_role}}<br>
+        <a href="mailto:{{sender_email}}">{{sender_email}}</a><br>
+        <a href="https://www.digivahan.in">www.digivahan.in</a>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

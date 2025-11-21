@@ -1,0 +1,18 @@
+{
+  "noreply@digivahan.com": {
+    "name": "DigiVahan Team",
+    "role": "Support Team",
+    "digital_signature_url": "https://example.com/signatures/digivahan-team.png"
+  },
+  "support@digivahan.com": {
+    "name": "Customer Support",
+    "role": "Support Manager",
+    "digital_signature_url": "https://example.com/signatures/support-manager.png"
+  },
+  "admin@digivahan.com": {
+    "name": "Admin Team",
+    "role": "Administrator",
+    "digital_signature_url": "https://example.com/signatures/admin.png"
+  }
+}
+

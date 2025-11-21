@@ -1,0 +1,4464 @@
+{
+  "info": {
+    "name": "DigiVahan Backend API Collection",
+    "description": "Complete API collection for DigiVahan vehicle management system",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "version": "1.0.0"
+  },
+  "item": [
+    {
+      "name": "Health & Status",
+      "item": [
+        {
+          "name": "API Status",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/",
+              "host": ["{{base_url}}"],
+              "path": [""]
+            },
+            "description": "Get API status and information"
+          },
+          "response": []
+        },
+        {
+          "name": "Health Check",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/health",
+              "host": ["{{base_url}}"],
+              "path": ["health"]
+            },
+            "description": "Check if server is running and database is connected"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Authentication APIs",
+      "item": [
+        {
+          "name": "Registration Init - Check User",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"first_name\": \"John\",\n  \"last_name\": \"Doe\",\n  \"email\": \"john.doe@example.com\",\n  \"phone\": \"9876543210\",\n  \"password\": \"StrongPass123\",\n  \"otp_channel\": \"phone\",\n  \"hit_type\": \"check\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/auth/register/init",
+              "host": ["{{base_url}}"],
+              "path": ["api", "auth", "register", "init"]
+            },
+            "description": "Check if user already exists"
+          },
+          "response": []
+        },
+        {
+          "name": "Registration Init - Register User",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"first_name\": \"John\",\n  \"last_name\": \"Doe\",\n  \"email\": \"john.doe@example.com\",\n  \"phone\": \"9876543210\",\n  \"password\": \"StrongPass123\",\n  \"otp_channel\": \"phone\",\n  \"hit_type\": \"register\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/auth/register/init",
+              "host": ["{{base_url}}"],
+              "path": ["api", "auth", "register", "init"]
+            },
+            "description": "Start user registration process and send OTP"
+          },
+          "response": []
+        },
+        {
+          "name": "Verify OTP",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"user_register_id\": \"{{temp_user_id}}\",\n  \"otp\": \"123456\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/auth/register/verify-otp",
+              "host": ["{{base_url}}"],
+              "path": ["api", "auth", "register", "verify-otp"]
+            },
+            "description": "Verify OTP and create user account"
+          },
+          "response": []
+        },
+        {
+          "name": "Resend OTP",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"user_register_id\": \"{{temp_user_id}}\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/auth/register/resend-otp",
+              "host": ["{{base_url}}"],
+              "path": ["api", "auth", "register", "resend-otp"]
+            },
+            "description": "Resend OTP to user"
+          },
+          "response": []
+        },
+        {
+          "name": "Sign In - Email",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"login_type\": \"email\",\n  \"login_value\": \"john.doe@example.com\",\n  \"password\": \"StrongPass123\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/auth/sign-in",
+              "host": ["{{base_url}}"],
+              "path": ["api", "auth", "sign-in"]
+            },
+            "description": "Sign in with email and password"
+          },
+          "response": []
+        },
+        {
+          "name": "Sign In - Phone",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"login_type\": \"phone\",\n  \"login_value\": \"9876543210\",\n  \"password\": \"StrongPass123\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/auth/sign-in",
+              "host": ["{{base_url}}"],
+              "path": ["api", "auth", "sign-in"]
+            },
+            "description": "Sign in with phone and password"
+          },
+          "response": []
+        },
+        {
+          "name": "OTP Based Login - Email",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"login_via\": \"email\",\n  \"value\": \"john.doe@example.com\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/auth/otp-based-login",
+              "host": ["{{base_url}}"],
+              "path": ["api", "auth", "otp-based-login"]
+            },
+            "description": "Send OTP for login via email"
+          },
+          "response": []
+        },
+        {
+          "name": "OTP Based Login - Phone",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"login_via\": \"phone\",\n  \"value\": \"9876543210\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/auth/otp-based-login",
+              "host": ["{{base_url}}"],
+              "path": ["api", "auth", "otp-based-login"]
+            },
+            "description": "Send OTP for login via phone"
+          },
+          "response": []
+        },
+        {
+          "name": "Verify Login OTP - Email",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"login_via\": \"email\",\n  \"value\": \"john.doe@example.com\",\n  \"otp\": \"123456\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/auth/verify-login-otp",
+              "host": ["{{base_url}}"],
+              "path": ["api", "auth", "verify-login-otp"]
+            },
+            "description": "Verify OTP for login via email"
+          },
+          "response": []
+        },
+        {
+          "name": "Verify Login OTP - Phone",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"login_via\": \"phone\",\n  \"value\": \"9876543210\",\n  \"otp\": \"123456\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/auth/verify-login-otp",
+              "host": ["{{base_url}}"],
+              "path": ["api", "auth", "verify-login-otp"]
+            },
+            "description": "Verify OTP for login via phone"
+          },
+          "response": []
+        },
+        {
+          "name": "Request Reset Password - Email",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"forget_with\": \"john.doe@example.com\",\n  \"otp_channel\": \"email\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/auth/request-reset-password",
+              "host": ["{{base_url}}"],
+              "path": ["api", "auth", "request-reset-password"]
+            },
+            "description": "Request password reset via email"
+          },
+          "response": []
+        },
+        {
+          "name": "Request Reset Password - Phone",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"forget_with\": \"9876543210\",\n  \"otp_channel\": \"phone\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/auth/request-reset-password",
+              "host": ["{{base_url}}"],
+              "path": ["api", "auth", "request-reset-password"]
+            },
+            "description": "Request password reset via phone"
+          },
+          "response": []
+        },
+        {
+          "name": "Verify Reset OTP - Email",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"forget_with\": \"john.doe@example.com\",\n  \"otp_channel\": \"email\",\n  \"otp\": \"123456\",\n  \"new_password\": \"NewPassword123\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/auth/verify-reset-otp",
+              "host": ["{{base_url}}"],
+              "path": ["api", "auth", "verify-reset-otp"]
+            },
+            "description": "Verify OTP and reset password via email"
+          },
+          "response": []
+        },
+        {
+          "name": "Verify Reset OTP - Phone",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"forget_with\": \"9876543210\",\n  \"otp_channel\": \"phone\",\n  \"otp\": \"123456\",\n  \"new_password\": \"NewPassword123\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/auth/verify-reset-otp",
+              "host": ["{{base_url}}"],
+              "path": ["api", "auth", "verify-reset-otp"]
+            },
+            "description": "Verify OTP and reset password via phone"
+          },
+          "response": []
+        },
+        {
+          "name": "User Verification Request - Email",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"otp_channel\": \"email\",\n  \"verify_to\": \"john.doe@example.com\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/auth/user/verify/request",
+              "host": ["{{base_url}}"],
+              "path": ["api", "auth", "user", "verify", "request"]
+            },
+            "description": "Request email verification"
+          },
+          "response": []
+        },
+        {
+          "name": "User Verification Request - Phone",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"otp_channel\": \"phone\",\n  \"verify_to\": \"9876543210\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/auth/user/verify/request",
+              "host": ["{{base_url}}"],
+              "path": ["api", "auth", "user", "verify", "request"]
+            },
+            "description": "Request phone verification"
+          },
+          "response": []
+        },
+        {
+          "name": "User Verification Confirm - Email",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"verify_to\": \"john.doe@example.com\",\n  \"otp_channel\": \"email\",\n  \"otp\": \"123456\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/auth/user/verify/confirm/{{verification_id}}",
+              "host": ["{{base_url}}"],
+              "path": [
+                "api",
+                "auth",
+                "user",
+                "verify",
+                "confirm",
+                "{{verification_id}}"
+              ]
+            },
+            "description": "Confirm email verification with OTP"
+          },
+          "response": []
+        },
+        {
+          "name": "User Verification Confirm - Phone",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"verify_to\": \"9876543210\",\n  \"otp_channel\": \"phone\",\n  \"otp\": \"123456\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/auth/user/verify/confirm/{{verification_id}}",
+              "host": ["{{base_url}}"],
+              "path": [
+                "api",
+                "auth",
+                "user",
+                "verify",
+                "confirm",
+                "{{verification_id}}"
+              ]
+            },
+            "description": "Confirm phone verification with OTP"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Device Management APIs",
+      "item": [
+        {
+          "name": "App Keys - Server Update",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"hit_by\": \"server\",\n  \"one_signal_id\": \"sdsdscdsdcccsdce\",\n  \"app_version\": \"1.0.1\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/device/app_keys",
+              "host": ["{{base_url}}"],
+              "path": ["api", "device", "app_keys"]
+            },
+            "description": "Update app configuration data (server hitting)"
+          },
+          "response": []
+        },
+        {
+          "name": "App Keys - User Get",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"hit_by\": \"user\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/device/app_keys",
+              "host": ["{{base_url}}"],
+              "path": ["api", "device", "app_keys"]
+            },
+            "description": "Get app configuration data (user hitting)"
+          },
+          "response": []
+        },
+        {
+          "name": "Device Data - Add Device",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"hit_type\": \"add\",\n  \"user_id\": \"{{user_id}}\",\n  \"device_name\": \"iPhone 15 Pro\",\n  \"device_version\": \"iOS 17.2\",\n  \"device_model\": \"iPhone 15 Pro\",\n  \"app_version\": \"1.0.1\",\n  \"player_id\": \"player123456\",\n  \"uuid\": \"unique-device-uuid-12345\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/device/device_data",
+              "host": ["{{base_url}}"],
+              "path": ["api", "device", "device_data"]
+            },
+            "description": "Add user device information"
+          },
+          "response": []
+        },
+        {
+          "name": "Device Data - Add Android Device",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"hit_type\": \"add\",\n  \"user_id\": \"{{user_id}}\",\n  \"device_name\": \"Samsung Galaxy S24\",\n  \"device_version\": \"Android 14\",\n  \"device_model\": \"SM-S921B\",\n  \"app_version\": \"1.0.1\",\n  \"player_id\": \"player789012\",\n  \"uuid\": \"android-device-uuid-67890\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/device/device_data",
+              "host": ["{{base_url}}"],
+              "path": ["api", "device", "device_data"]
+            },
+            "description": "Add Android device information"
+          },
+          "response": []
+        },
+        {
+          "name": "Device Data - Remove Device",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"hit_type\": \"remove\",\n  \"user_id\": \"{{user_id}}\",\n  \"uuid\": \"unique-device-uuid-12345\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/device/device_data",
+              "host": ["{{base_url}}"],
+              "path": ["api", "device", "device_data"]
+            },
+            "description": "Remove device from user's device list"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Test Scenarios",
+      "item": [
+        {
+          "name": "Complete Registration Flow",
+          "item": [
+            {
+              "name": "1. Check User Exists",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"first_name\": \"Test\",\n  \"last_name\": \"User\",\n  \"email\": \"test@example.com\",\n  \"phone\": \"9876543210\",\n  \"password\": \"TestPass123\",\n  \"otp_channel\": \"phone\",\n  \"hit_type\": \"check\"\n}"
+                },
+                "url": {
+                  "raw": "{{base_url}}/api/auth/register/init",
+                  "host": ["{{base_url}}"],
+                  "path": ["api", "auth", "register", "init"]
+                }
+              }
+            },
+            {
+              "name": "2. Register User",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"first_name\": \"Test\",\n  \"last_name\": \"User\",\n  \"email\": \"test@example.com\",\n  \"phone\": \"9876543210\",\n  \"password\": \"TestPass123\",\n  \"otp_channel\": \"phone\",\n  \"hit_type\": \"register\"\n}"
+                },
+                "url": {
+                  "raw": "{{base_url}}/api/auth/register/init",
+                  "host": ["{{base_url}}"],
+                  "path": ["api", "auth", "register", "init"]
+                }
+              }
+            },
+            {
+              "name": "3. Verify OTP",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"user_register_id\": \"{{temp_user_id}}\",\n  \"otp\": \"123456\"\n}"
+                },
+                "url": {
+                  "raw": "{{base_url}}/api/auth/register/verify-otp",
+                  "host": ["{{base_url}}"],
+                  "path": ["api", "auth", "register", "verify-otp"]
+                }
+              }
+            }
+          ]
+        },
+        {
+          "name": "Complete Login Flow",
+          "item": [
+            {
+              "name": "1. OTP Based Login",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"login_via\": \"phone\",\n  \"value\": \"9876543210\"\n}"
+                },
+                "url": {
+                  "raw": "{{base_url}}/api/auth/otp-based-login",
+                  "host": ["{{base_url}}"],
+                  "path": ["api", "auth", "otp-based-login"]
+                }
+              }
+            },
+            {
+              "name": "2. Verify Login OTP",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"login_via\": \"phone\",\n  \"value\": \"9876543210\",\n  \"otp\": \"123456\"\n}"
+                },
+                "url": {
+                  "raw": "{{base_url}}/api/auth/verify-login-otp",
+                  "host": ["{{base_url}}"],
+                  "path": ["api", "auth", "verify-login-otp"]
+                }
+              }
+            }
+          ]
+        },
+        {
+          "name": "Complete Password Reset Flow",
+          "item": [
+            {
+              "name": "1. Request Reset Password",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"forget_with\": \"test@example.com\",\n  \"otp_channel\": \"email\"\n}"
+                },
+                "url": {
+                  "raw": "{{base_url}}/api/auth/request-reset-password",
+                  "host": ["{{base_url}}"],
+                  "path": ["api", "auth", "request-reset-password"]
+                }
+              }
+            },
+            {
+              "name": "2. Verify Reset OTP",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"forget_with\": \"test@example.com\",\n  \"otp_channel\": \"email\",\n  \"otp\": \"123456\",\n  \"new_password\": \"NewTestPass123\"\n}"
+                },
+                "url": {
+                  "raw": "{{base_url}}/api/auth/verify-reset-otp",
+                  "host": ["{{base_url}}"],
+                  "path": ["api", "auth", "verify-reset-otp"]
+                }
+              }
+            }
+          ]
+        },
+        {
+          "name": "Complete Device Management Flow",
+          "item": [
+            {
+              "name": "1. Update App Keys (Server)",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"hit_by\": \"server\",\n  \"one_signal_id\": \"test-onesignal-id-123\",\n  \"app_version\": \"1.0.0\"\n}"
+                },
+                "url": {
+                  "raw": "{{base_url}}/api/device/app_keys",
+                  "host": ["{{base_url}}"],
+                  "path": ["api", "device", "app_keys"]
+                }
+              }
+            },
+            {
+              "name": "2. Get App Keys (User)",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"hit_by\": \"user\"\n}"
+                },
+                "url": {
+                  "raw": "{{base_url}}/api/device/app_keys",
+                  "host": ["{{base_url}}"],
+                  "path": ["api", "device", "app_keys"]
+                }
+              }
+            },
+            {
+              "name": "3. Add Device",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"hit_type\": \"add\",\n  \"user_id\": \"{{user_id}}\",\n  \"device_name\": \"Test Device\",\n  \"device_version\": \"Test OS 1.0\",\n  \"device_model\": \"Test Model\",\n  \"app_version\": \"1.0.0\",\n  \"player_id\": \"test-player-123\",\n  \"uuid\": \"test-uuid-12345\"\n}"
+                },
+                "url": {
+                  "raw": "{{base_url}}/api/device/device_data",
+                  "host": ["{{base_url}}"],
+                  "path": ["api", "device", "device_data"]
+                }
+              }
+            },
+            {
+              "name": "4. Remove Device",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"hit_type\": \"remove\",\n  \"user_id\": \"{{user_id}}\",\n  \"uuid\": \"test-uuid-12345\"\n}"
+                },
+                "url": {
+                  "raw": "{{base_url}}/api/device/device_data",
+                  "host": ["{{base_url}}"],
+                  "path": ["api", "device", "device_data"]
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "User Management APIs",
+      "item": [
+        {
+          "name": "Suspend User - Email",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"user_id\": \"sumitsaini576@gmail.com\",\n  \"suspend_until\": \"2025-08-20T12:00:00Z\",\n  \"reason\": \"Violation of terms and conditions\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/auth/suspend-user",
+              "host": ["{{base_url}}"],
+              "path": ["api", "auth", "suspend-user"]
+            },
+            "description": "Suspend a user for a specific time period using email"
+          },
+          "response": []
+        },
+        {
+          "name": "Suspend User - Phone",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"user_id\": \"9876543210\",\n  \"suspend_until\": \"2025-08-20T12:00:00Z\",\n  \"reason\": \"Violation of terms and conditions\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/auth/suspend-user",
+              "host": ["{{base_url}}"],
+              "path": ["api", "auth", "suspend-user"]
+            },
+            "description": "Suspend a user for a specific time period using phone number"
+          },
+          "response": []
+        },
+        {
+          "name": "Remove User Suspension - Email",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"user_id\": \"sumitsaini576@gmail.com\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/auth/remove-suspension",
+              "host": ["{{base_url}}"],
+              "path": ["api", "auth", "remove-suspension"]
+            },
+            "description": "Remove suspension from a user using email"
+          },
+          "response": []
+        },
+        {
+          "name": "Remove User Suspension - Phone",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"user_id\": \"9876543210\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/auth/remove-suspension",
+              "host": ["{{base_url}}"],
+              "path": ["api", "auth", "remove-suspension"]
+            },
+            "description": "Remove suspension from a user using phone number"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Fuel Price Management APIs",
+      "item": [
+        {
+          "name": "Fuel Price - Get All Prices",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/v1/fuel-price",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "fuel-price"]
+            },
+            "description": "Get all fuel prices across all states"
+          },
+          "response": []
+        },
+        {
+          "name": "Fuel Price - Get by State",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"state\": \"UTTAR_PRADESH\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/v1/fuel-price",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "fuel-price"]
+            },
+            "description": "Get fuel price for a specific state"
+          },
+          "response": []
+        },
+        {
+          "name": "Fuel Price - Update State Prices",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"state\": \"UTTAR_PRADESH\",\n  \"petrol_price\": 97.45,\n  \"diesel_price\": 89.75,\n  \"cng_price\": 74.00\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/v1/fuel-price",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "fuel-price"]
+            },
+            "description": "Update fuel prices for a specific state"
+          },
+          "response": []
+        },
+        {
+          "name": "Fuel Price - Update Delhi Prices",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"state\": \"DELHI\",\n  \"petrol_price\": 96.72,\n  \"diesel_price\": 89.62,\n  \"cng_price\": 73.59\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/v1/fuel-price",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "fuel-price"]
+            },
+            "description": "Update fuel prices for Delhi"
+          },
+          "response": []
+        },
+        {
+          "name": "Fuel Price - Update Maharashtra Prices",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"state\": \"MAHARASHTRA\",\n  \"petrol_price\": 106.31,\n  \"diesel_price\": 94.27,\n  \"cng_price\": 75.00\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/v1/fuel-price",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "fuel-price"]
+            },
+            "description": "Update fuel prices for Maharashtra"
+          },
+          "response": []
+        },
+        {
+          "name": "Get All Fuel Prices (Alternative Endpoint)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/v1/fuel-price/all",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "fuel-price", "all"]
+            },
+            "description": "Get all fuel prices using GET endpoint"
+          },
+          "response": []
+        },
+        {
+          "name": "Get Fuel Price by State (Alternative Endpoint)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/v1/fuel-price/state/UTTAR_PRADESH",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "fuel-price", "state", "UTTAR_PRADESH"]
+            },
+            "description": "Get fuel price for specific state using GET endpoint"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Email Management APIs",
+      "item": [
+        {
+          "name": "Send Email - Termination",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"sender\": \"hr@digivahan.in\",\n  \"to\": \"zaid@example.com\",\n  \"subject\": \"Termination of Employment – Digivahan Digital India Pvt. Ltd.\",\n  \"body\": \"termination\",\n  \"signature\": {\n    \"employee_name\": \"John Doe\",\n    \"termination_date\": \"2025-01-31\"\n  },\n  \"attachments\": [\n    {\n      \"filename\": \"termination-letter.pdf\",\n      \"content\": \"base64-encoded-content\",\n      \"encoding\": \"base64\"\n    }\n  ]\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/email/send",
+              "host": ["{{base_url}}"],
+              "path": ["api", "email", "send"]
+            },
+            "description": "Send termination email with template"
+          },
+          "response": []
+        },
+        {
+          "name": "Send Email - Welcome",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"sender\": \"hr@digivahan.in\",\n  \"to\": \"newemployee@example.com\",\n  \"subject\": \"Welcome to Digivahan Digital India Pvt. Ltd.\",\n  \"body\": \"welcome\",\n  \"signature\": {\n    \"employee_name\": \"Jane Smith\",\n    \"position\": \"Software Developer\",\n    \"start_date\": \"2025-02-01\",\n    \"manager_name\": \"John Manager\"\n  }\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/email/send",
+              "host": ["{{base_url}}"],
+              "path": ["api", "email", "send"]
+            },
+            "description": "Send welcome email with template"
+          },
+          "response": []
+        },
+        {
+          "name": "Send Email - OTP",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"sender\": \"noreply@digivahan.in\",\n  \"to\": \"user@example.com\",\n  \"subject\": \"Verification Code - Digivahan Digital India Pvt. Ltd.\",\n  \"body\": \"otp\",\n  \"signature\": {\n    \"user_name\": \"John Doe\",\n    \"purpose\": \"account verification\",\n    \"otp_code\": \"123456\",\n    \"expiry_minutes\": \"10\"\n  }\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/email/send",
+              "host": ["{{base_url}}"],
+              "path": ["api", "email", "send"]
+            },
+            "description": "Send OTP verification email"
+          },
+          "response": []
+        },
+        {
+          "name": "Get Available Templates",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/email/templates",
+              "host": ["{{base_url}}"],
+              "path": ["api", "email", "templates"]
+            },
+            "description": "Get list of available email templates"
+          },
+          "response": []
+        },
+        {
+          "name": "Get Available Senders",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/email/senders",
+              "host": ["{{base_url}}"],
+              "path": ["api", "email", "senders"]
+            },
+            "description": "Get list of available sender emails"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Admin Management APIs",
+      "item": [
+        {
+          "name": "Get Policies",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/admin/get-policies",
+              "host": ["{{base_url}}"],
+              "path": ["api", "admin", "get-policies"]
+            },
+            "description": "Fetch the latest policies and company details pages"
+          },
+          "response": []
+        },
+        {
+          "name": "Update Policy Status",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"policy_name\": \"privacy_policy\",\n  \"status\": \"Live\",\n  \"url\": \"https://www.digivahan.in/privacy-policy\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/admin/update-policy",
+              "host": ["{{base_url}}"],
+              "path": ["api", "admin", "update-policy"]
+            },
+            "description": "Update the status of a specific policy"
+          },
+          "response": []
+        },
+        {
+          "name": "Get Policy Status",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/admin/policy/privacy_policy",
+              "host": ["{{base_url}}"],
+              "path": ["api", "admin", "policy", "privacy_policy"]
+            },
+            "description": "Get the status of a specific policy"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "QR Code Management APIs",
+      "item": [
+        {
+          "name": "Generate QR Code",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"generer_id\": \"user_12345\",\n  \"qr_unit\": \"3\",\n  \"genreated_by\": \"admin\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/generate-qr",
+              "host": ["{{base_url}}"],
+              "path": ["api", "generate-qr"]
+            },
+            "description": "Generate QR codes based on provided parameters"
+          },
+          "response": []
+        },
+        {
+          "name": "Get QR Code Details",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/qr/4rtrtde43",
+              "host": ["{{base_url}}"],
+              "path": ["api", "qr", "4rtrtde43"]
+            },
+            "description": "Get details of a specific QR code"
+          },
+          "response": []
+        },
+        {
+          "name": "Validate QR Code",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"qr_data\": \"https://digivahan.in/api/send-notification-page/qr_id-4rtrtde43\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/validate-qr",
+              "host": ["{{base_url}}"],
+              "path": ["api", "validate-qr"]
+            },
+            "description": "Validate a QR code and return its data"
+          },
+          "response": []
+        },
+        {
+          "name": "Assign QR Code to Vehicle - User",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"qr_id\": \"QR00178\",\n  \"vehicle_id\": \"MH12AB1234\",\n  \"assigend_by\": \"user\",\n  \"user_id\": \"507f1f77bcf86cd799439011\",\n  \"sales_id\": \"\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/assign-qr",
+              "host": ["{{base_url}}"],
+              "path": ["api", "assign-qr"]
+            },
+            "description": "Assign QR code to vehicle by user"
+          },
+          "response": []
+        },
+        {
+          "name": "Assign QR Code to Vehicle - Sales",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"qr_id\": \"QR00179\",\n  \"vehicle_id\": \"MH12AB5678\",\n  \"assigend_by\": \"sales\",\n  \"user_id\": \"\",\n  \"sales_id\": \"SALES001\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/assign-qr",
+              "host": ["{{base_url}}"],
+              "path": ["api", "assign-qr"]
+            },
+            "description": "Assign QR code to vehicle by sales person"
+          },
+          "response": []
+        },
+        {
+          "name": "Get QR Assignment Details",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/qr-assignment/QR00178",
+              "host": ["{{base_url}}"],
+              "path": ["api", "qr-assignment", "QR00178"]
+            },
+            "description": "Get details of a QR assignment"
+          },
+          "response": []
+        },
+        {
+          "name": "Get Vehicle QR Assignment",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/vehicle-qr/MH12AB1234",
+              "host": ["{{base_url}}"],
+              "path": ["api", "vehicle-qr", "MH12AB1234"]
+            },
+            "description": "Get QR assignment for a specific vehicle"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "File Upload APIs",
+      "item": [
+        {
+          "name": "Upload Single File",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "file",
+                  "type": "file",
+                  "src": []
+                },
+                {
+                  "key": "folder",
+                  "value": "test-uploads",
+                  "type": "text",
+                  "description": "Optional folder name for organizing files"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}/api/upload/single",
+              "host": ["{{base_url}}"],
+              "path": ["api", "upload", "single"]
+            },
+            "description": "Upload a single file to S3 bucket with optional folder organization"
+          },
+          "response": []
+        },
+        {
+          "name": "Upload Multiple Files",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "files",
+                  "type": "file",
+                  "src": []
+                },
+                {
+                  "key": "files",
+                  "type": "file",
+                  "src": []
+                },
+                {
+                  "key": "folder",
+                  "value": "multiple-uploads",
+                  "type": "text",
+                  "description": "Optional folder name for organizing files"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}/api/upload/multiple",
+              "host": ["{{base_url}}"],
+              "path": ["api", "upload", "multiple"]
+            },
+            "description": "Upload multiple files (up to 5) to S3 bucket"
+          },
+          "response": []
+        },
+        {
+          "name": "Upload Profile Image",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "file",
+                  "type": "file",
+                  "src": [],
+                  "description": "Image file (JPEG, PNG, GIF, WebP) - Max 5MB"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}/api/upload/profile-image",
+              "host": ["{{base_url}}"],
+              "path": ["api", "upload", "profile-image"]
+            },
+            "description": "Upload profile image for user profiles (images only, max 5MB)"
+          },
+          "response": []
+        },
+        {
+          "name": "Upload Vehicle Document",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "file",
+                  "type": "file",
+                  "src": [],
+                  "description": "Document file (JPEG, PNG, PDF) - Max 15MB"
+                },
+                {
+                  "key": "vehicle_id",
+                  "value": "MH12AB1234",
+                  "type": "text",
+                  "description": "Vehicle ID for document association"
+                },
+                {
+                  "key": "document_type",
+                  "value": "registration",
+                  "type": "text",
+                  "description": "Document type: registration, insurance, pollution, fitness, permit, other"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}/api/upload/vehicle-document",
+              "host": ["{{base_url}}"],
+              "path": ["api", "upload", "vehicle-document"]
+            },
+            "description": "Upload vehicle document with type and vehicle association"
+          },
+          "response": []
+        },
+        {
+          "name": "Get File Information",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/file/info?file_id={{file_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "file", "info"],
+              "query": [
+                {
+                  "key": "file_id",
+                  "value": "{{file_id}}"
+                }
+              ]
+            },
+            "description": "Get detailed information about a file by its ID"
+          },
+          "response": []
+        },
+        {
+          "name": "Get File URL",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/file/url?file_id={{file_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "file", "url"],
+              "query": [
+                {
+                  "key": "file_id",
+                  "value": "{{file_id}}"
+                }
+              ]
+            },
+            "description": "Get the public URL of a file by its ID"
+          },
+          "response": []
+        },
+        {
+          "name": "Delete File",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/file/delete?file_id={{file_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "file", "delete"],
+              "query": [
+                {
+                  "key": "file_id",
+                  "value": "{{file_id}}"
+                }
+              ]
+            },
+            "description": "Delete a file from S3 bucket by its ID"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "File Upload Test Scenarios",
+      "item": [
+        {
+          "name": "Complete File Upload Flow",
+          "item": [
+            {
+              "name": "1. Upload Single File",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "key": "file",
+                      "type": "file",
+                      "src": []
+                    },
+                    {
+                      "key": "folder",
+                      "value": "test-flow",
+                      "type": "text"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{base_url}}/api/upload/single",
+                  "host": ["{{base_url}}"],
+                  "path": ["api", "upload", "single"]
+                }
+              }
+            },
+            {
+              "name": "2. Get File Information",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{base_url}}/api/file/info?file_id={{file_id}}",
+                  "host": ["{{base_url}}"],
+                  "path": ["api", "file", "info"],
+                  "query": [
+                    {
+                      "key": "file_id",
+                      "value": "{{file_id}}"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "name": "3. Get File URL",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{base_url}}/api/file/url?file_id={{file_id}}",
+                  "host": ["{{base_url}}"],
+                  "path": ["api", "file", "url"],
+                  "query": [
+                    {
+                      "key": "file_id",
+                      "value": "{{file_id}}"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "name": "4. Delete File",
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{base_url}}/api/file/delete?file_id={{file_id}}",
+                  "host": ["{{base_url}}"],
+                  "path": ["api", "file", "delete"],
+                  "query": [
+                    {
+                      "key": "file_id",
+                      "value": "{{file_id}}"
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        {
+          "name": "Profile Image Upload Flow",
+          "item": [
+            {
+              "name": "1. Upload Profile Image",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "key": "file",
+                      "type": "file",
+                      "src": []
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{base_url}}/api/upload/profile-image",
+                  "host": ["{{base_url}}"],
+                  "path": ["api", "upload", "profile-image"]
+                }
+              }
+            },
+            {
+              "name": "2. Get Profile Image URL",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{base_url}}/api/file/url?file_id={{file_id}}",
+                  "host": ["{{base_url}}"],
+                  "path": ["api", "file", "url"],
+                  "query": [
+                    {
+                      "key": "file_id",
+                      "value": "{{file_id}}"
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        {
+          "name": "Vehicle Document Upload Flow",
+          "item": [
+            {
+              "name": "1. Upload Registration Document",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "key": "file",
+                      "type": "file",
+                      "src": []
+                    },
+                    {
+                      "key": "vehicle_id",
+                      "value": "MH12AB1234",
+                      "type": "text"
+                    },
+                    {
+                      "key": "document_type",
+                      "value": "registration",
+                      "type": "text"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{base_url}}/api/upload/vehicle-document",
+                  "host": ["{{base_url}}"],
+                  "path": ["api", "upload", "vehicle-document"]
+                }
+              }
+            },
+            {
+              "name": "2. Upload Insurance Document",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "key": "file",
+                      "type": "file",
+                      "src": []
+                    },
+                    {
+                      "key": "vehicle_id",
+                      "value": "MH12AB1234",
+                      "type": "text"
+                    },
+                    {
+                      "key": "document_type",
+                      "value": "insurance",
+                      "type": "text"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{base_url}}/api/upload/vehicle-document",
+                  "host": ["{{base_url}}"],
+                  "path": ["api", "upload", "vehicle-document"]
+                }
+              }
+            },
+            {
+              "name": "3. Get Document Information",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{base_url}}/api/file/info?file_id={{file_id}}",
+                  "host": ["{{base_url}}"],
+                  "path": ["api", "file", "info"],
+                  "query": [
+                    {
+                      "key": "file_id",
+                      "value": "{{file_id}}"
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        {
+          "name": "Multiple Files Upload Flow",
+          "item": [
+            {
+              "name": "1. Upload Multiple Files",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "key": "files",
+                      "type": "file",
+                      "src": []
+                    },
+                    {
+                      "key": "files",
+                      "type": "file",
+                      "src": []
+                    },
+                    {
+                      "key": "files",
+                      "type": "file",
+                      "src": []
+                    },
+                    {
+                      "key": "folder",
+                      "value": "batch-upload",
+                      "type": "text"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{base_url}}/api/upload/multiple",
+                  "host": ["{{base_url}}"],
+                  "path": ["api", "upload", "multiple"]
+                }
+              }
+            },
+            {
+              "name": "2. Get All Uploaded Files Info",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{base_url}}/api/file/info?file_id={{file_id}}",
+                  "host": ["{{base_url}}"],
+                  "path": ["api", "file", "info"],
+                  "query": [
+                    {
+                      "key": "file_id",
+                      "value": "{{file_id}}"
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "New API Test Scenarios",
+      "item": [
+        {
+          "name": "Complete User Suspension Flow",
+          "item": [
+            {
+              "name": "1. Suspend User (Email)",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"user_id\": \"test@example.com\",\n  \"suspend_until\": \"2025-08-20T12:00:00Z\",\n  \"reason\": \"Test suspension for API validation\"\n}"
+                },
+                "url": {
+                  "raw": "{{base_url}}/api/auth/suspend-user",
+                  "host": ["{{base_url}}"],
+                  "path": ["api", "auth", "suspend-user"]
+                }
+              }
+            },
+            {
+              "name": "2. Remove User Suspension (Email)",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"user_id\": \"test@example.com\"\n}"
+                },
+                "url": {
+                  "raw": "{{base_url}}/api/auth/remove-suspension",
+                  "host": ["{{base_url}}"],
+                  "path": ["api", "auth", "remove-suspension"]
+                }
+              }
+            }
+          ]
+        },
+        {
+          "name": "Complete Fuel Price Management Flow",
+          "item": [
+            {
+              "name": "1. Get All Fuel Prices",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{}"
+                },
+                "url": {
+                  "raw": "{{base_url}}/api/v1/fuel-price",
+                  "host": ["{{base_url}}"],
+                  "path": ["api", "v1", "fuel-price"]
+                }
+              }
+            },
+            {
+              "name": "2. Update Uttar Pradesh Fuel Prices",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"state\": \"UTTAR_PRADESH\",\n  \"petrol_price\": 97.45,\n  \"diesel_price\": 89.75,\n  \"cng_price\": 74.00\n}"
+                },
+                "url": {
+                  "raw": "{{base_url}}/api/v1/fuel-price",
+                  "host": ["{{base_url}}"],
+                  "path": ["api", "v1", "fuel-price"]
+                }
+              }
+            },
+            {
+              "name": "3. Get Uttar Pradesh Fuel Price",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"state\": \"UTTAR_PRADESH\"\n}"
+                },
+                "url": {
+                  "raw": "{{base_url}}/api/v1/fuel-price",
+                  "host": ["{{base_url}}"],
+                  "path": ["api", "v1", "fuel-price"]
+                }
+              }
+            },
+            {
+              "name": "4. Update Delhi Fuel Prices",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"state\": \"DELHI\",\n  \"petrol_price\": 96.72,\n  \"diesel_price\": 89.62,\n  \"cng_price\": 73.59\n}"
+                },
+                "url": {
+                  "raw": "{{base_url}}/api/v1/fuel-price",
+                  "host": ["{{base_url}}"],
+                  "path": ["api", "v1", "fuel-price"]
+                }
+              }
+            },
+            {
+              "name": "5. Get All Updated Fuel Prices",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{base_url}}/api/v1/fuel-price/all",
+                  "host": ["{{base_url}}"],
+                  "path": ["api", "v1", "fuel-price", "all"]
+                }
+              }
+            }
+          ]
+        },
+        {
+          "name": "Complete Email Flow",
+          "item": [
+            {
+              "name": "1. Get Available Templates",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{base_url}}/api/email/templates",
+                  "host": ["{{base_url}}"],
+                  "path": ["api", "email", "templates"]
+                }
+              }
+            },
+            {
+              "name": "2. Get Available Senders",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{base_url}}/api/email/senders",
+                  "host": ["{{base_url}}"],
+                  "path": ["api", "email", "senders"]
+                }
+              }
+            },
+            {
+              "name": "3. Send Termination Email",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"sender\": \"hr@digivahan.in\",\n  \"to\": \"test@example.com\",\n  \"subject\": \"Test Termination Email\",\n  \"body\": \"termination\",\n  \"signature\": {\n    \"employee_name\": \"Test Employee\",\n    \"termination_date\": \"2025-01-31\"\n  }\n}"
+                },
+                "url": {
+                  "raw": "{{base_url}}/api/email/send",
+                  "host": ["{{base_url}}"],
+                  "path": ["api", "email", "send"]
+                }
+              }
+            }
+          ]
+        },
+        {
+          "name": "Complete QR Code Flow",
+          "item": [
+            {
+              "name": "1. Generate QR Code",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"generer_id\": \"test_user_123\",\n  \"qr_unit\": \"2\",\n  \"genreated_by\": \"admin\"\n}"
+                },
+                "url": {
+                  "raw": "{{base_url}}/api/generate-qr",
+                  "host": ["{{base_url}}"],
+                  "path": ["api", "generate-qr"]
+                }
+              }
+            },
+            {
+              "name": "2. Assign QR to Vehicle",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"qr_id\": \"test-qr-123\",\n  \"vehicle_id\": \"TEST123\",\n  \"assigend_by\": \"user\",\n  \"user_id\": \"{{user_id}}\",\n  \"sales_id\": \"\"\n}"
+                },
+                "url": {
+                  "raw": "{{base_url}}/api/assign-qr",
+                  "host": ["{{base_url}}"],
+                  "path": ["api", "assign-qr"]
+                }
+              }
+            },
+            {
+              "name": "3. Get QR Assignment Details",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{base_url}}/api/qr-assignment/test-qr-123",
+                  "host": ["{{base_url}}"],
+                  "path": ["api", "qr-assignment", "test-qr-123"]
+                }
+              }
+            }
+          ]
+        },
+        {
+          "name": "Complete Admin Flow",
+          "item": [
+            {
+              "name": "1. Get All Policies",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{base_url}}/api/admin/get-policies",
+                  "host": ["{{base_url}}"],
+                  "path": ["api", "admin", "get-policies"]
+                }
+              }
+            },
+            {
+              "name": "2. Update Policy Status",
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"policy_name\": \"privacy_policy\",\n  \"status\": \"Under_Maintenance\",\n  \"url\": \"https://www.digivahan.in/privacy-policy\"\n}"
+                },
+                "url": {
+                  "raw": "{{base_url}}/api/admin/update-policy",
+                  "host": ["{{base_url}}"],
+                  "path": ["api", "admin", "update-policy"]
+                }
+              }
+            },
+            {
+              "name": "3. Get Specific Policy",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{base_url}}/api/admin/policy/privacy_policy",
+                  "host": ["{{base_url}}"],
+                  "path": ["api", "admin", "policy", "privacy_policy"]
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Garage Management APIs",
+      "item": [
+        {
+          "name": "Add Vehicle to Garage",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"user_id\": \"user_98765\",\n  \"vehicle_number\": \"UP32AB1234\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/v1/garage/add-vehicle",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "garage", "add-vehicle"]
+            },
+            "description": "Add vehicle details from RTO to user's garage for tracking important dates"
+          },
+          "response": []
+        },
+        {
+          "name": "Remove Vehicle from Garage",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"user_id\": \"user_98765\",\n  \"vehicle_number\": \"DL5CA1234\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/v1/garage/remove-vehicle",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "garage", "remove-vehicle"]
+            },
+            "description": "Remove a vehicle from user's garage"
+          },
+          "response": []
+        },
+        {
+          "name": "Get User Garage",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/v1/garage/{{user_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "garage", "{{user_id}}"]
+            },
+            "description": "Get all vehicles in user's garage"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Trending Cars APIs",
+      "item": [
+        {
+          "name": "Trending Cars - Add",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"hit_type\": \"add\",\n  \"brand_name\": \"Hyundai\",\n  \"model_name\": \"Tucson\",\n  \"type\": \"Premium Midsize SUV\",\n  \"price\": 2927000,\n  \"price_display\": \"₹29.27 Lakh onwards\",\n  \"mileage\": \"35 kmpl\",\n  \"top_speed\": \"212 km/h\",\n  \"image_url\": \"https://example.com/images/tucson_blue.png\",\n  \"specifications\": {\n    \"engine_capacity\": \"1997 cc\",\n    \"transmission\": \"Automatic (AMT)\",\n    \"fuel_tank_capacity\": \"37 Liters\",\n    \"seat_height\": \"450 mm\",\n    \"kerb_weight\": \"1750 kg\"\n  },\n  \"detailed_specifications\": {\n    \"max_power\": \"89 bhp\",\n    \"max_torque\": \"120 Nm\",\n    \"riding_mode\": \"Eco, Normal, Sport\",\n    \"gear_shifting_pattern\": \"6-speed automatic\"\n  },\n  \"dimensions\": {\n    \"bootspace\": \"420 Liters\",\n    \"ground_clearance\": \"163 mm\",\n    \"length\": \"3999 mm\",\n    \"width\": \"1735 mm\",\n    \"height\": \"1525 mm\"\n  },\n  \"features\": {\n    \"air_conditioner\": true,\n    \"central_locking\": \"Keyless\",\n    \"power_windows\": \"Front & Rear\",\n    \"headrest\": \"Front & Rear\",\n    \"parking_assist\": \"Reverse Camera with Guidance\",\n    \"cruise_control\": true,\n    \"music_system_count\": 1,\n    \"apple_carplay\": \"Wireless\",\n    \"android_auto\": \"Wireless\",\n    \"abs\": true,\n    \"sunroof\": false,\n    \"third_row_ac\": false,\n    \"airbags\": [\n      \"Driver\",\n      \"Front Passenger\",\n      \"Curtain\",\n      \"Side\",\n      \"Rear Passenger\"\n    ]\n  }\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/user/trending-cars",
+              "host": ["{{base_url}}"],
+              "path": ["api", "user", "trending-cars"]
+            },
+            "description": "Add a new car to the trending cars list"
+          },
+          "response": []
+        },
+        {
+          "name": "Trending Cars - Delete",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"hit_type\": \"delete\",\n  \"car_id\": \"car_001\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/user/trending-cars",
+              "host": ["{{base_url}}"],
+              "path": ["api", "user", "trending-cars"]
+            },
+            "description": "Delete a car from the trending cars list"
+          },
+          "response": []
+        },
+        {
+          "name": "Trending Cars - Fetch All",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"hit_type\": \"fetch\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/user/trending-cars",
+              "host": ["{{base_url}}"],
+              "path": ["api", "user", "trending-cars"]
+            },
+            "description": "Fetch all trending cars from the database"
+          },
+          "response": []
+        },
+        {
+          "name": "Fetch Top Trending Vehicles",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/add-vehicle-to-top_trending",
+              "host": ["{{base_url}}"],
+              "path": ["api", "add-vehicle-to-top_trending"]
+            },
+            "description": "Fetch top 4 trending vehicles from the database"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Vehicle Comparison APIs",
+      "item": [
+        {
+          "name": "Compare Vehicles - Create Comparison",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"car_1\": \"car_001\",\n  \"car_2\": \"car_002\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/vehicles/compare",
+              "host": ["{{base_url}}"],
+              "path": ["api", "vehicles", "compare"]
+            },
+            "description": "Create a new comparison between two vehicles"
+          },
+          "response": []
+        },
+        {
+          "name": "Compare Vehicles - Get All Comparisons",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/vehicles/compare",
+              "host": ["{{base_url}}"],
+              "path": ["api", "vehicles", "compare"]
+            },
+            "description": "Get all vehicle comparisons (no parameters)"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Tips & Tricks APIs",
+      "item": [
+        {
+          "name": "Tips & Tricks - Add New",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"banner_url\": \"https://yourcdn.com/images/tyre-check.jpg\",\n  \"title\": \"Tyre Maintenance Tips\",\n  \"summary\": \"Tyres play a major role in road safety. Here are some quick maintenance tips.\",\n  \"points\": [\n    {\n      \"icon\": \"https://yourcdn.com/icons/tyre-pressure.png\",\n      \"message\": \"Check tyre pressure weekly.\"\n    },\n    {\n      \"icon\": \"https://yourcdn.com/icons/tyre-rotation.png\",\n      \"message\": \"Rotate tyres every 10,000 km.\"\n    },\n    {\n      \"icon\": \"https://yourcdn.com/icons/overload.png\",\n      \"message\": \"Avoid overloading your car.\"\n    },\n    {\n      \"icon\": \"https://yourcdn.com/icons/tyre-wear.png\",\n      \"message\": \"Check for uneven wear patterns.\"\n    }\n  ]\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/v1/tips-tricks",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "tips-tricks"]
+            },
+            "description": "Add a new tip to the tips and tricks collection"
+          },
+          "response": []
+        },
+        {
+          "name": "Tips & Tricks - Update Existing",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"tip_id\": \"tt_102\",\n  \"banner_url\": \"https://yourcdn.com/images/tyre-check.jpg\",\n  \"title\": \"Tyre Maintenance Tips\",\n  \"summary\": \"Tyres play a major role in road safety. Here are some quick maintenance tips.\",\n  \"points\": [\n    {\n      \"icon\": \"https://yourcdn.com/icons/tyre-pressure.png\",\n      \"message\": \"Check tyre pressure weekly.\"\n    },\n    {\n      \"icon\": \"https://yourcdn.com/icons/tyre-rotation.png\",\n      \"message\": \"Rotate tyres every 10,000 km.\"\n    },\n    {\n      \"icon\": \"https://yourcdn.com/icons/overload.png\",\n      \"message\": \"Avoid overloading your car.\"\n    },\n    {\n      \"icon\": \"https://yourcdn.com/icons/tyre-wear.png\",\n      \"message\": \"Check for uneven wear patterns.\"\n    }\n  ]\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/v1/tips-tricks",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "tips-tricks"]
+            },
+            "description": "Update an existing tip in the tips and tricks collection"
+          },
+          "response": []
+        },
+        {
+          "name": "Get All Tips & Tricks",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/tips-tricks-list",
+              "host": ["{{base_url}}"],
+              "path": ["api", "tips-tricks-list"]
+            },
+            "description": "Get all vehicle tips and tricks sorted by creation date"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "News Management APIs",
+      "item": [
+        {
+          "name": "Post News",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"banner\": \"https://yourcdn.com/images/automotive-news-banner.jpg\",\n  \"news_type\": \"automotive\",\n  \"heading\": \"New Electric Vehicle Technology Revolutionizes Transportation\",\n  \"news\": \"<h2>Revolutionary EV Technology</h2><p>In a groundbreaking development, automotive manufacturers have unveiled new electric vehicle technology that promises to revolutionize transportation. The new system features:</p><ul><li>Extended battery life up to 500 miles</li><li>Fast charging in under 15 minutes</li><li>Advanced autonomous driving capabilities</li></ul><p>This technology is expected to be available in production vehicles by 2025.</p>\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/admin/news-post",
+              "host": ["{{base_url}}"],
+              "path": ["api", "admin", "news-post"]
+            },
+            "description": "Post new news article with banner, type, heading, and HTML content"
+          },
+          "response": []
+        },
+        {
+          "name": "Get News List",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/user/news/list?limit=10&page=1&news_type=automotive",
+              "host": ["{{base_url}}"],
+              "path": ["api", "user", "news", "list"],
+              "query": [
+                {
+                  "key": "limit",
+                  "value": "10"
+                },
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "news_type",
+                  "value": "automotive"
+                }
+              ]
+            },
+            "description": "Get news list with pagination and optional filtering by news type"
+          },
+          "response": []
+        },
+        {
+          "name": "Get News by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/user/news/{{news_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "user", "news", "{{news_id}}"]
+            },
+            "description": "Get specific news article by ID"
+          },
+          "response": []
+        },
+        {
+          "name": "Update News",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"banner\": \"https://yourcdn.com/images/updated-banner.jpg\",\n  \"news_type\": \"technology\",\n  \"heading\": \"Updated News Title\",\n  \"news\": \"<p>Updated news content with new information.</p>\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/admin/news/{{news_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "admin", "news", "{{news_id}}"]
+            },
+            "description": "Update existing news article"
+          },
+          "response": []
+        },
+        {
+          "name": "Delete News",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/admin/news/{{news_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "admin", "news", "{{news_id}}"]
+            },
+            "description": "Delete news article by ID"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "QR Benefit Videos APIs",
+      "item": [
+        {
+          "name": "QR Videos - Add New Video",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"QR Code Benefits Explained\",\n  \"tutorial_video\": \"https://www.youtube.com/watch?v=abcd1234\",\n  \"tutorial_thumbnail\": \"https://yourcdn.com/images/qr-video-thumbnail.jpg\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/qr-benefit-videos",
+              "host": ["{{base_url}}"],
+              "path": ["api", "qr-benefit-videos"]
+            },
+            "description": "Add new QR benefit video to the collection"
+          },
+          "response": []
+        },
+        {
+          "name": "QR Videos - Update Video",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"tutorial_video_id\": \"qr_video_001\",\n  \"title\": \"Updated QR Code Benefits Explained\",\n  \"tutorial_video\": \"https://www.youtube.com/watch?v=updated1234\",\n  \"tutorial_thumbnail\": \"https://yourcdn.com/images/updated-thumbnail.jpg\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/qr-benefit-videos",
+              "host": ["{{base_url}}"],
+              "path": ["api", "qr-benefit-videos"]
+            },
+            "description": "Update existing QR benefit video"
+          },
+          "response": []
+        },
+        {
+          "name": "QR Videos - Delete Video",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"tutorial_video_id\": \"qr_video_001\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/qr-benefit-videos",
+              "host": ["{{base_url}}"],
+              "path": ["api", "qr-benefit-videos"]
+            },
+            "description": "Delete QR benefit video by ID"
+          },
+          "response": []
+        },
+        {
+          "name": "Get QR Benefit Videos",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/qr-benefit-videos",
+              "host": ["{{base_url}}"],
+              "path": ["api", "qr-benefit-videos"]
+            },
+            "description": "Fetch all QR benefit videos with metadata"
+          },
+          "response": []
+        },
+        {
+          "name": "Get QR Video by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/qr-benefit-videos/{{tutorial_video_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "qr-benefit-videos", "{{tutorial_video_id}}"]
+            },
+            "description": "Get specific QR benefit video by ID"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "New API Test Scenarios",
+      "item": [
+        {
+          "name": "Complete Garage Management Flow",
+          "item": [
+            {
+              "name": "1. Add Vehicle to Garage",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"user_id\": \"{{user_id}}\",\n  \"vehicle_number\": \"TEST123\"\n}"
+                },
+                "url": {
+                  "raw": "{{base_url}}/api/v1/garage/add-vehicle",
+                  "host": ["{{base_url}}"],
+                  "path": ["api", "v1", "garage", "add-vehicle"]
+                }
+              }
+            },
+            {
+              "name": "2. Get User Garage",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{base_url}}/api/v1/garage/{{user_id}}",
+                  "host": ["{{base_url}}"],
+                  "path": ["api", "v1", "garage", "{{user_id}}"]
+                }
+              }
+            },
+            {
+              "name": "3. Remove Vehicle from Garage",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"user_id\": \"{{user_id}}\",\n  \"vehicle_number\": \"TEST123\"\n}"
+                },
+                "url": {
+                  "raw": "{{base_url}}/api/v1/garage/remove-vehicle",
+                  "host": ["{{base_url}}"],
+                  "path": ["api", "v1", "garage", "remove-vehicle"]
+                }
+              }
+            }
+          ]
+        },
+        {
+          "name": "Complete Trending Cars Flow",
+          "item": [
+            {
+              "name": "1. Add Trending Car",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"hit_type\": \"add\",\n  \"brand_name\": \"Test Brand\",\n  \"model_name\": \"Test Model\",\n  \"type\": \"Test Type\",\n  \"price\": 1000000,\n  \"price_display\": \"₹10 Lakh onwards\",\n  \"mileage\": \"20 kmpl\",\n  \"top_speed\": \"180 km/h\",\n  \"image_url\": \"https://example.com/test-image.png\",\n  \"specifications\": {\n    \"engine_capacity\": \"1500 cc\",\n    \"transmission\": \"Manual\",\n    \"fuel_tank_capacity\": \"40 Liters\"\n  },\n  \"detailed_specifications\": {\n    \"max_power\": \"100 bhp\",\n    \"max_torque\": \"150 Nm\"\n  },\n  \"dimensions\": {\n    \"length\": \"4000 mm\",\n    \"width\": \"1700 mm\",\n    \"height\": \"1500 mm\"\n  },\n  \"features\": {\n    \"air_conditioner\": true,\n    \"abs\": true,\n    \"airbags\": [\"Driver\", \"Front Passenger\"]\n  }\n}"
+                },
+                "url": {
+                  "raw": "{{base_url}}/api/user/trending-cars",
+                  "host": ["{{base_url}}"],
+                  "path": ["api", "user", "trending-cars"]
+                }
+              }
+            },
+            {
+              "name": "2. Fetch All Trending Cars",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"hit_type\": \"fetch\"\n}"
+                },
+                "url": {
+                  "raw": "{{base_url}}/api/user/trending-cars",
+                  "host": ["{{base_url}}"],
+                  "path": ["api", "user", "trending-cars"]
+                }
+              }
+            },
+            {
+              "name": "3. Get Top Trending Vehicles",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{}"
+                },
+                "url": {
+                  "raw": "{{base_url}}/api/add-vehicle-to-top_trending",
+                  "host": ["{{base_url}}"],
+                  "path": ["api", "add-vehicle-to-top_trending"]
+                }
+              }
+            }
+          ]
+        },
+        {
+          "name": "Complete News Management Flow",
+          "item": [
+            {
+              "name": "1. Post News",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"banner\": \"https://yourcdn.com/images/test-news-banner.jpg\",\n  \"news_type\": \"automotive\",\n  \"heading\": \"Test News Article\",\n  \"news\": \"<h2>Test News</h2><p>This is a test news article for API validation.</p>\"\n}"
+                },
+                "url": {
+                  "raw": "{{base_url}}/api/admin/news-post",
+                  "host": ["{{base_url}}"],
+                  "path": ["api", "admin", "news-post"]
+                }
+              }
+            },
+            {
+              "name": "2. Get News List",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{base_url}}/api/user/news/list",
+                  "host": ["{{base_url}}"],
+                  "path": ["api", "user", "news", "list"]
+                }
+              }
+            },
+            {
+              "name": "3. Get News by Type",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{base_url}}/api/user/news/list?news_type=automotive",
+                  "host": ["{{base_url}}"],
+                  "path": ["api", "user", "news", "list"],
+                  "query": [
+                    {
+                      "key": "news_type",
+                      "value": "automotive"
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        {
+          "name": "Complete QR Videos Flow",
+          "item": [
+            {
+              "name": "1. Add QR Video",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"title\": \"Test QR Benefits Video\",\n  \"tutorial_video\": \"https://www.youtube.com/watch?v=test123\",\n  \"tutorial_thumbnail\": \"https://yourcdn.com/images/test-thumbnail.jpg\"\n}"
+                },
+                "url": {
+                  "raw": "{{base_url}}/api/qr-benefit-videos",
+                  "host": ["{{base_url}}"],
+                  "path": ["api", "qr-benefit-videos"]
+                }
+              }
+            },
+            {
+              "name": "2. Get All QR Videos",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{base_url}}/api/qr-benefit-videos",
+                  "host": ["{{base_url}}"],
+                  "path": ["api", "qr-benefit-videos"]
+                }
+              }
+            },
+            {
+              "name": "3. Update QR Video",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"tutorial_video_id\": \"{{tutorial_video_id}}\",\n  \"title\": \"Updated Test QR Benefits Video\",\n  \"tutorial_video\": \"https://www.youtube.com/watch?v=updated123\",\n  \"tutorial_thumbnail\": \"https://yourcdn.com/images/updated-thumbnail.jpg\"\n}"
+                },
+                "url": {
+                  "raw": "{{base_url}}/api/qr-benefit-videos",
+                  "host": ["{{base_url}}"],
+                  "path": ["api", "qr-benefit-videos"]
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "User Management APIs",
+      "item": [
+        {
+          "name": "Delete User Account",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"user_id\": \"user@example.com\",\n  \"deletion_time_in_days\": \"3\",\n  \"deletion_type\": \"all\",\n  \"reason\": \"User requested account deletion\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/v1/users",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "users"]
+            },
+            "description": "Initiate user account deletion process. If deletion_time_in_days is 0, account will be deleted instantly."
+          },
+          "response": []
+        },
+        {
+          "name": "Cancel User Deletion",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"user_id\": \"user@example.com\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/v1/users/cancel-deletion",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "users", "cancel-deletion"]
+            },
+            "description": "Cancel pending user deletion (called when user logs in during deletion period)"
+          },
+          "response": []
+        },
+        {
+          "name": "Get User Deletion Status",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/v1/users/{{user_id}}/deletion-status",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "users", "{{user_id}}", "deletion-status"]
+            },
+            "description": "Get user deletion status and details"
+          },
+          "response": []
+        },
+        {
+          "name": "Update User Details",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"user_id\": \"user@example.com\",\n  \"first_name\": \"John\",\n  \"last_name\": \"Doe\",\n  \"email\": \"john.doe@example.com\",\n  \"phone_number\": \"9876543210\",\n  \"occupation\": \"Engineer\",\n  \"nick_name\": \"Johnny\",\n  \"address\": \"123 Main Street\",\n  \"age\": \"30\",\n  \"gender\": \"male\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/update_user",
+              "host": ["{{base_url}}"],
+              "path": ["api", "update_user"]
+            },
+            "description": "Update user basic and public details"
+          },
+          "response": []
+        },
+        {
+          "name": "Get User Details",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/update_user/{{user_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "update_user", "{{user_id}}"]
+            },
+            "description": "Get user details by user ID"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Emergency Contact APIs",
+      "item": [
+        {
+          "name": "Add Emergency Contact",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"user_id\": \"user@example.com\",\n  \"hit_type\": \"add\",\n  \"first_name\": \"Ramesh\",\n  \"last_name\": \"Sharma\",\n  \"relation\": \"Father\",\n  \"phone_number\": \"+919123456789\",\n  \"email\": \"ramesh@example.com\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/v1/emergency-contact",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "emergency-contact"]
+            },
+            "description": "Add a new emergency contact"
+          },
+          "response": []
+        },
+        {
+          "name": "Edit Emergency Contact",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"user_id\": \"user@example.com\",\n  \"hit_type\": \"edit\",\n  \"contact_id\": \"EC098765\",\n  \"first_name\": \"Ramesh\",\n  \"last_name\": \"Sharma\",\n  \"relation\": \"Father\",\n  \"phone_number\": \"+919123456789\",\n  \"email\": \"ramesh.sharma@example.com\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/v1/emergency-contact",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "emergency-contact"]
+            },
+            "description": "Update an existing emergency contact"
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Emergency Contact",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"user_id\": \"user@example.com\",\n  \"hit_type\": \"delete\",\n  \"contact_id\": \"EC098765\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/v1/emergency-contact",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "emergency-contact"]
+            },
+            "description": "Delete an emergency contact"
+          },
+          "response": []
+        },
+        {
+          "name": "Get All Emergency Contacts",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/v1/emergency-contact/{{user_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "emergency-contact", "{{user_id}}"]
+            },
+            "description": "Get all emergency contacts for a user"
+          },
+          "response": []
+        },
+        {
+          "name": "Get Specific Emergency Contact",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/v1/emergency-contact/{{user_id}}/{{contact_id}}",
+              "host": ["{{base_url}}"],
+              "path": [
+                "api",
+                "v1",
+                "emergency-contact",
+                "{{user_id}}",
+                "{{contact_id}}"
+              ]
+            },
+            "description": "Get a specific emergency contact"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Address Book APIs",
+      "item": [
+        {
+          "name": "Add Address",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"user_id\": \"user@example.com\",\n  \"hit_type\": \"add\",\n  \"name\": \"Jishan\",\n  \"contact_no\": \"9876543210\",\n  \"house_no_building\": \"123, ABC Building\",\n  \"street_name\": \"Main Street\",\n  \"area\": \"Downtown\",\n  \"city\": \"Mumbai\",\n  \"state\": \"Maharashtra\",\n  \"pincode\": \"400001\",\n  \"default_status\": \"true\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/v1/user-address",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "user-address"]
+            },
+            "description": "Add a new address to user's address book"
+          },
+          "response": []
+        },
+        {
+          "name": "Edit Address",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"user_id\": \"user@example.com\",\n  \"hit_type\": \"edit\",\n  \"address_id\": \"ADDR12345678\",\n  \"name\": \"Jishan\",\n  \"contact_no\": \"9876543210\",\n  \"house_no_building\": \"123, ABC Building\",\n  \"street_name\": \"Main Street\",\n  \"area\": \"Downtown\",\n  \"city\": \"Mumbai\",\n  \"state\": \"Maharashtra\",\n  \"pincode\": \"400001\",\n  \"default_status\": \"true\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/v1/user-address",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "user-address"]
+            },
+            "description": "Update an existing address"
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Address",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"user_id\": \"user@example.com\",\n  \"hit_type\": \"delete\",\n  \"address_id\": \"ADDR12345678\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/v1/user-address",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "user-address"]
+            },
+            "description": "Delete an address from address book"
+          },
+          "response": []
+        },
+        {
+          "name": "Get All Addresses",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/v1/user-address/{{user_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "user-address", "{{user_id}}"]
+            },
+            "description": "Get all addresses for a user"
+          },
+          "response": []
+        },
+        {
+          "name": "Get Specific Address",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/v1/user-address/{{user_id}}/{{address_id}}",
+              "host": ["{{base_url}}"],
+              "path": [
+                "api",
+                "v1",
+                "user-address",
+                "{{user_id}}",
+                "{{address_id}}"
+              ]
+            },
+            "description": "Get a specific address"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Password Management APIs",
+      "item": [
+        {
+          "name": "Change Password",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"user_id\": \"user@example.com\",\n  \"old_password\": \"OldPass@123\",\n  \"new_password\": \"NewSecret@456\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/v1/user/change-password",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "user", "change-password"]
+            },
+            "description": "Change user password with validation"
+          },
+          "response": []
+        },
+        {
+          "name": "Get Password History",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/v1/user/{{user_id}}/password-history",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "user", "{{user_id}}", "password-history"]
+            },
+            "description": "Get password change history and requirements"
+          },
+          "response": []
+        },
+        {
+          "name": "Check Password Strength",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"password\": \"NewSecret@456\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/v1/user/check-password-strength",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "user", "check-password-strength"]
+            },
+            "description": "Check password strength without changing password"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Primary Contact APIs",
+      "item": [
+        {
+          "name": "Change Primary Contact",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"user_id\": \"user@example.com\",\n  \"set_primary\": \"email\",\n  \"value\": \"newemail@example.com\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/v1/user/change-primary-contact",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "user", "change-primary-contact"]
+            },
+            "description": "Initiate primary contact change with OTP verification"
+          },
+          "response": []
+        },
+        {
+          "name": "Verify Primary Contact Change",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"user_id\": \"user@example.com\",\n  \"otp\": \"123456\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/v1/user/verify-primary-contact",
+              "host": ["{{base_url}}"],
+              "path": ["api", "v1", "user", "verify-primary-contact"]
+            },
+            "description": "Verify OTP and complete primary contact change"
+          },
+          "response": []
+        },
+        {
+          "name": "Get Primary Contact Status",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/v1/user/{{user_id}}/primary-contact-status",
+              "host": ["{{base_url}}"],
+              "path": [
+                "api",
+                "v1",
+                "user",
+                "{{user_id}}",
+                "primary-contact-status"
+              ]
+            },
+            "description": "Get current primary contact status"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Vault & Access Code APIs",
+      "item": [
+        {
+          "name": "Request Vault Document Access",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"user_id\": \"user@example.com\",\n  \"vehicle_number\": \"MH12AB1234\",\n  \"requester_id\": \"REQ123456\",\n  \"security_code\": \"432324\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/vault-document-access",
+              "host": ["{{base_url}}"],
+              "path": ["vault-document-access"]
+            },
+            "description": "Request access to vehicle documents with security code verification"
+          },
+          "response": []
+        },
+        {
+          "name": "Get Vault Access History",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/vault-document-access/{{user_id}}/history?page=1&limit=20",
+              "host": ["{{base_url}}"],
+              "path": ["vault-document-access", "{{user_id}}", "history"],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "20"
+                }
+              ]
+            },
+            "description": "Get vault access history for a user"
+          },
+          "response": []
+        },
+        {
+          "name": "Get Vault Access Statistics",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/vault-document-access/{{user_id}}/stats",
+              "host": ["{{base_url}}"],
+              "path": ["vault-document-access", "{{user_id}}", "stats"]
+            },
+            "description": "Get vault access statistics for a user"
+          },
+          "response": []
+        },
+        {
+          "name": "Revoke Vault Access",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"user_id\": \"user@example.com\",\n  \"vehicle_number\": \"MH12AB1234\",\n  \"security_code\": \"432324\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/vault-document-access/revoke",
+              "host": ["{{base_url}}"],
+              "path": ["vault-document-access", "revoke"]
+            },
+            "description": "Revoke vault access for a specific vehicle"
+          },
+          "response": []
+        },
+        {
+          "name": "Verify Access Code",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"user_id\": \"user@example.com\",\n  \"vehicle_id\": \"VEH001\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/verify-access-document",
+              "host": ["{{base_url}}"],
+              "path": ["verify-access-document"]
+            },
+            "description": "Verify access code for document access"
+          },
+          "response": []
+        },
+        {
+          "name": "Generate Access Code",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"user_id\": \"user@example.com\",\n  \"vehicle_id\": \"VEH001\",\n  \"max_access_count\": 1\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/verify-access-document/generate",
+              "host": ["{{base_url}}"],
+              "path": ["verify-access-document", "generate"]
+            },
+            "description": "Generate access code for document sharing"
+          },
+          "response": []
+        },
+        {
+          "name": "Get Access Code Status",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/verify-access-document/{{user_id}}/{{vehicle_id}}",
+              "host": ["{{base_url}}"],
+              "path": [
+                "verify-access-document",
+                "{{user_id}}",
+                "{{vehicle_id}}"
+              ]
+            },
+            "description": "Get access code status"
+          },
+          "response": []
+        },
+        {
+          "name": "Cancel Access Code",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"user_id\": \"user@example.com\",\n  \"vehicle_id\": \"VEH001\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/verify-access-document/cancel",
+              "host": ["{{base_url}}"],
+              "path": ["verify-access-document", "cancel"]
+            },
+            "description": "Cancel access code"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Notification APIs",
+      "item": [
+        {
+          "name": "Send Notification",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"sender_id\": \"sender@example.com\",\n  \"receiver_id\": \"receiver@example.com\",\n  \"sender_pic\": \"https://example.com/profile.jpg\",\n  \"sender_name\": \"John Doe\",\n  \"notification_type\": \"vehicle\",\n  \"notification_text\": \"Your vehicle registration is due for renewal\",\n  \"link\": \"https://app.digivahan.in/vehicle/details\",\n  \"vehicle_or_item_id\": \"MH12AB1234\",\n  \"chat_data\": null,\n  \"chat_room\": null\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/notifications/send",
+              "host": ["{{base_url}}"],
+              "path": ["api", "notifications", "send"]
+            },
+            "description": "Send notification to a user. Notification types: vehicle, order, doc_access, chat, other. Saves in-app notification and sends push notification if device is registered."
+          },
+          "response": []
+        },
+        {
+          "name": "Send Notification - Chat Type",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"sender_id\": \"sender@example.com\",\n  \"receiver_id\": \"receiver@example.com\",\n  \"sender_pic\": \"https://example.com/profile.jpg\",\n  \"sender_name\": \"John Doe\",\n  \"notification_type\": \"chat\",\n  \"notification_text\": \"You have a new message\",\n  \"link\": \"https://app.digivahan.in/chat\",\n  \"vehicle_or_item_id\": \"\",\n  \"chat_data\": {\n    \"latitude\": \"28.6139\",\n    \"longitude\": \"77.2090\",\n    \"message\": \"Emergency assistance needed\",\n    \"incident_proof_file\": \"https://example.com/incident.jpg\"\n  },\n  \"chat_room\": \"chat_room_12345\",\n  \"chat_room_id\": \"chat_room_12345\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/notifications/send",
+              "host": ["{{base_url}}"],
+              "path": ["api", "notifications", "send"]
+            },
+            "description": "Send chat notification with location and incident proof"
+          },
+          "response": []
+        },
+        {
+          "name": "Send Notification - Order Type",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"sender_id\": \"system@digivahan.in\",\n  \"receiver_id\": \"user@example.com\",\n  \"sender_pic\": \"https://digivahan.in/logo.png\",\n  \"sender_name\": \"DigiVahan\",\n  \"notification_type\": \"order\",\n  \"notification_text\": \"Your order #ORD123456 has been shipped\",\n  \"link\": \"https://app.digivahan.in/orders/ORD123456\",\n  \"vehicle_or_item_id\": \"ORD123456\",\n  \"chat_data\": null,\n  \"chat_room\": null\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/notifications/send",
+              "host": ["{{base_url}}"],
+              "path": ["api", "notifications", "send"]
+            },
+            "description": "Send order notification"
+          },
+          "response": []
+        },
+        {
+          "name": "Get Notification List",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/notifications/{{user_id}}?page=1&limit=20",
+              "host": ["{{base_url}}"],
+              "path": ["api", "notifications", "{{user_id}}"],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1",
+                  "description": "Page number for pagination"
+                },
+                {
+                  "key": "limit",
+                  "value": "20",
+                  "description": "Number of notifications per page"
+                },
+                {
+                  "key": "notification_type",
+                  "value": "",
+                  "description": "Optional filter: vehicle, order, doc_access, chat, other",
+                  "disabled": true
+                },
+                {
+                  "key": "is_read",
+                  "value": "",
+                  "description": "Optional filter: true or false",
+                  "disabled": true
+                }
+              ]
+            },
+            "description": "Get notification list for a user with optional filtering by type and read status"
+          },
+          "response": []
+        },
+        {
+          "name": "Get Notification List - Filtered by Type",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/notifications/{{user_id}}?page=1&limit=20&notification_type=vehicle&is_read=false",
+              "host": ["{{base_url}}"],
+              "path": ["api", "notifications", "{{user_id}}"],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "20"
+                },
+                {
+                  "key": "notification_type",
+                  "value": "vehicle"
+                },
+                {
+                  "key": "is_read",
+                  "value": "false"
+                }
+              ]
+            },
+            "description": "Get unread vehicle notifications for a user"
+          },
+          "response": []
+        },
+        {
+          "name": "Mark Notifications as Read",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"notification_ids\": [\n    \"64f9c1a8d2a3b8e0b9123456\",\n    \"64f9c1a8d2a3b8e0b9123457\",\n    \"64f9c1a8d2a3b8e0b9123458\"\n  ]\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/notifications/{{user_id}}/mark-read",
+              "host": ["{{base_url}}"],
+              "path": ["api", "notifications", "{{user_id}}", "mark-read"]
+            },
+            "description": "Mark specific notifications as read by providing an array of notification IDs"
+          },
+          "response": []
+        },
+        {
+          "name": "Get Unread Notification Count",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/notifications/{{user_id}}/unread-count",
+              "host": ["{{base_url}}"],
+              "path": ["api", "notifications", "{{user_id}}", "unread-count"]
+            },
+            "description": "Get the count of unread notifications for a user"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Get Details APIs",
+      "item": [
+        {
+          "name": "Get User Details",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"user_id\": \"user@example.com\",\n  \"details_types\": [\"basic\", \"public\", \"garage\", \"emergency_contacts\", \"address_book\"]\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/get-details",
+              "host": ["{{base_url}}"],
+              "path": ["get-details"]
+            },
+            "description": "Get specific user details based on requested types"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Order Management APIs",
+      "item": [
+        {
+          "name": "Create Order",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"user_id\": \"USR123456\",\n  \"vehicle_id\": \"VEH001\",\n  \"order_for\": \"vehicle accessories\",\n  \"pickup_location\": \"Warehouse A, Mumbai\",\n  \"billing_customer_name\": \"John\",\n  \"billing_last_name\": \"Doe\",\n  \"billing_address\": \"123 Main Street\",\n  \"billing_city\": \"Mumbai\",\n  \"billing_pincode\": \"400001\",\n  \"billing_state\": \"Maharashtra\",\n  \"billing_country\": \"India\",\n  \"billing_email\": \"john@example.com\",\n  \"billing_phone\": \"9876543210\",\n  \"shipping_is_billing\": true,\n  \"shipping_customer_name\": \"John\",\n  \"shipping_address\": \"123 Main Street\",\n  \"shipping_city\": \"Mumbai\",\n  \"shipping_pincode\": \"400001\",\n  \"shipping_state\": \"Maharashtra\",\n  \"shipping_country\": \"India\",\n  \"shipping_email\": \"john@example.com\",\n  \"shipping_phone\": \"9876543210\",\n  \"order_items\": [\n    {\n      \"name\": \"Car Cover\",\n      \"sku\": \"SKU001\",\n      \"units\": 1,\n      \"selling_price\": 2500,\n      \"discount\": 200,\n      \"tax\": 300\n    }\n  ],\n  \"payment_method\": \"UPI\",\n  \"sub_total\": 2300,\n  \"length\": 10,\n  \"breadth\": 10,\n  \"height\": 10,\n  \"weight\": 2\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/orders",
+              "host": ["{{base_url}}"],
+              "path": ["api", "orders"]
+            },
+            "description": "Create a new order with billing and shipping details"
+          },
+          "response": []
+        },
+        {
+          "name": "Get User Orders",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"user_id\": \"USR123456\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/orders-user-list",
+              "host": ["{{base_url}}"],
+              "path": ["api", "orders-user-list"]
+            },
+            "description": "Get all orders for a user"
+          },
+          "response": []
+        },
+        {
+          "name": "Get User Orders with Order ID",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"user_id\": \"USR123456\",\n  \"order_id\": \"ORD123456\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/orders-user-list",
+              "host": ["{{base_url}}"],
+              "path": ["api", "orders-user-list"]
+            },
+            "description": "Get specific order details by order ID"
+          },
+          "response": []
+        },
+        {
+          "name": "Cancel Order",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"user_id\": \"USR123456\",\n  \"order_id\": \"ORD123456\",\n  \"cancellation_reason\": \"Changed my mind\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/orders/cancel",
+              "host": ["{{base_url}}"],
+              "path": ["api", "orders", "cancel"]
+            },
+            "description": "Cancel an existing order"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Review Management APIs",
+      "item": [
+        {
+          "name": "Submit Review",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"user_id\": \"USR987654321\",\n  \"order_id\": \"ORD_12345\",\n  \"product_type\": \"PROD001\",\n  \"rating\": 4.5,\n  \"review_title\": \"Great product with amazing quality!\",\n  \"review_text\": \"This product exceeded my expectations. The quality is excellent and delivery was prompt. Highly recommended!\",\n  \"review_type\": \"app\",\n  \"user_name\": \"John Doe\",\n  \"user_review_message\": \"Amazing product!\",\n  \"user_rating\": 5,\n  \"media_files\": [\n    \"https://example.com/image1.jpg\"\n  ],\n  \"verified_purchase\": true\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/review-submit",
+              "host": ["{{base_url}}"],
+              "path": ["api", "review-submit"]
+            },
+            "description": "Submit a new review for a product"
+          },
+          "response": []
+        },
+        {
+          "name": "Get User Feedback - App Reviews",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"review_type\": \"app\",\n  \"limits\": \"8\",\n  \"page\": \"1\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/user-feedback",
+              "host": ["{{base_url}}"],
+              "path": ["api", "user-feedback"]
+            },
+            "description": "Get app reviews with pagination"
+          },
+          "response": []
+        },
+        {
+          "name": "Get User Feedback - QR Reviews",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"review_type\": \"qr\",\n  \"limits\": \"10\",\n  \"page\": \"1\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/user-feedback",
+              "host": ["{{base_url}}"],
+              "path": ["api", "user-feedback"]
+            },
+            "description": "Get QR-related reviews with pagination"
+          },
+          "response": []
+        },
+        {
+          "name": "Get User Feedback - Service History",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"review_type\": \"service_history\",\n  \"limits\": \"15\",\n  \"page\": \"1\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/user-feedback",
+              "host": ["{{base_url}}"],
+              "path": ["api", "user-feedback"]
+            },
+            "description": "Get service history reviews with pagination"
+          },
+          "response": []
+        },
+        {
+          "name": "Get User Feedback - All Reviews",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"review_type\": \"all\",\n  \"limits\": \"20\",\n  \"page\": \"1\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/user-feedback",
+              "host": ["{{base_url}}"],
+              "path": ["api", "user-feedback"]
+            },
+            "description": "Get all reviews across all types with pagination"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Chat Management APIs",
+      "item": [
+        {
+          "name": "Create or Get Chat",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"user1\": \"user123\",\n  \"user2\": \"user456\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/chats",
+              "host": ["{{base_url}}"],
+              "path": ["api", "chats"]
+            },
+            "description": "Create a new chat or retrieve existing chat between two users"
+          },
+          "response": []
+        },
+        {
+          "name": "Get User Chats",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/chats/{{user_id}}?limit=50&page=1",
+              "host": ["{{base_url}}"],
+              "path": ["api", "chats", "{{user_id}}"],
+              "query": [
+                {
+                  "key": "limit",
+                  "value": "50"
+                },
+                {
+                  "key": "page",
+                  "value": "1"
+                }
+              ]
+            },
+            "description": "Get all chats for a specific user with pagination"
+          },
+          "response": []
+        },
+        {
+          "name": "Get Chat Details",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/chats/details/{{chat_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "chats", "details", "{{chat_id}}"]
+            },
+            "description": "Get details of a specific chat by chat ID"
+          },
+          "response": []
+        },
+        {
+          "name": "Send Message",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"chatId\": \"{{chat_id}}\",\n  \"senderId\": \"user123\",\n  \"receiverId\": \"user456\",\n  \"message\": \"Hello ❤️\",\n  \"attachments\": []\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/messages",
+              "host": ["{{base_url}}"],
+              "path": ["api", "messages"]
+            },
+            "description": "Send a new message in a chat"
+          },
+          "response": []
+        },
+        {
+          "name": "Get Messages",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/messages/{{chat_id}}?limit=50&offset=0",
+              "host": ["{{base_url}}"],
+              "path": ["api", "messages", "{{chat_id}}"],
+              "query": [
+                {
+                  "key": "limit",
+                  "value": "50"
+                },
+                {
+                  "key": "offset",
+                  "value": "0"
+                }
+              ]
+            },
+            "description": "Get all messages for a specific chat with pagination"
+          },
+          "response": []
+        },
+        {
+          "name": "Update Message Status",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"seen\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/messages/{{message_id}}/status",
+              "host": ["{{base_url}}"],
+              "path": ["api", "messages", "{{message_id}}", "status"]
+            },
+            "description": "Update the status of a message (sent, delivered, seen)"
+          },
+          "response": []
+        },
+        {
+          "name": "Get Unread Count",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/messages/unread/{{user_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "messages", "unread", "{{user_id}}"]
+            },
+            "description": "Get the count of unread messages for a user"
+          },
+          "response": []
+        },
+        {
+          "name": "Get Unread Count for Chat",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/messages/unread/{{user_id}}?chatId={{chat_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "messages", "unread", "{{user_id}}"],
+              "query": [
+                {
+                  "key": "chatId",
+                  "value": "{{chat_id}}"
+                }
+              ]
+            },
+            "description": "Get unread message count for a specific chat"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Razorpay Payment APIs",
+      "item": [
+        {
+          "name": "Create Razorpay Order",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"amount\": 2500,\n  \"currency\": \"INR\",\n  \"receipt\": \"order_rcptid_12345\",\n  \"notes\": {\n    \"order_for\": \"vehicle accessories\",\n    \"user_id\": \"USR123456\"\n  }\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/razorpay/create-order",
+              "host": ["{{base_url}}"],
+              "path": ["razorpay", "create-order"]
+            },
+            "description": "Create a new Razorpay order for payment processing"
+          },
+          "response": []
+        },
+        {
+          "name": "Verify Payment",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"order_id\": \"order_1234567890\",\n  \"payment_id\": \"pay_1234567890\",\n  \"signature\": \"abc123def456ghi789jkl012mno345pqr678stu901vwx234yz\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/razorpay/verify-payment",
+              "host": ["{{base_url}}"],
+              "path": ["razorpay", "verify-payment"]
+            },
+            "description": "Verify payment signature and confirm payment"
+          },
+          "response": []
+        },
+        {
+          "name": "Get Payment Details",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/razorpay/payment/{{payment_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["razorpay", "payment", "{{payment_id}}"]
+            },
+            "description": "Get payment details by payment ID"
+          },
+          "response": []
+        },
+        {
+          "name": "Get Order Details",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/razorpay/order/{{order_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["razorpay", "order", "{{order_id}}"]
+            },
+            "description": "Get order details by order ID"
+          },
+          "response": []
+        },
+        {
+          "name": "Get Razorpay Keys",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/razorpay/keys",
+              "host": ["{{base_url}}"],
+              "path": ["razorpay", "keys"]
+            },
+            "description": "Get Razorpay public key and configuration"
+          },
+          "response": []
+        },
+        {
+          "name": "Create Refund",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"payment_id\": \"pay_1234567890\",\n  \"amount\": 1000,\n  \"notes\": {\n    \"reason\": \"Customer requested refund\",\n    \"refund_type\": \"partial\"\n  }\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/razorpay/refund",
+              "host": ["{{base_url}}"],
+              "path": ["razorpay", "refund"]
+            },
+            "description": "Create a refund for a payment (partial or full)"
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          "// Auto-generate test data if needed",
+          "if (!pm.environment.get('user_id')) {",
+          "    pm.environment.set('user_id', 'test-user-' + Date.now());",
+          "}",
+          "",
+          "if (!pm.environment.get('temp_user_id')) {",
+          "    pm.environment.set('temp_user_id', 'temp-' + Date.now());",
+          "}",
+          "",
+          "if (!pm.environment.get('verification_id')) {",
+          "    pm.environment.set('verification_id', 'verify-' + Date.now());",
+          "}"
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          "// Auto-extract variables from responses",
+          "if (pm.response.code === 200) {",
+          "    try {",
+          "        const responseJson = pm.response.json();",
+          "        ",
+          "        // Extract temp_user_id from registration init response",
+          "        if (responseJson.user_register_id) {",
+          "            pm.environment.set('temp_user_id', responseJson.user_register_id);",
+          "        }",
+          "        ",
+          "        // Extract verification_id from verification request response",
+          "        if (responseJson.otp_verification_endpoint) {",
+          "            const urlParts = responseJson.otp_verification_endpoint.split('/');",
+          "            const verificationId = urlParts[urlParts.length - 1];",
+          "            pm.environment.set('verification_id', verificationId);",
+          "        }",
+          "        ",
+          "        // Extract user_id from successful registration/login",
+          "        if (responseJson.user && responseJson.user.basic_details) {",
+          "            pm.environment.set('user_id', responseJson.user._id || 'extracted-user-id');",
+          "        }",
+          "        ",
+          "        // Extract news_id from news creation response",
+          "        if (responseJson.data && responseJson.data.news_id) {",
+          "            pm.environment.set('news_id', responseJson.data.news_id);",
+          "        }",
+          "        ",
+          "        // Extract tutorial_video_id from QR video creation response",
+          "        if (responseJson.data && responseJson.data.tutorial_video_id) {",
+          "            pm.environment.set('tutorial_video_id', responseJson.data.tutorial_video_id);",
+          "        }",
+          "        ",
+          "        // Extract car_id from trending cars response",
+          "        if (responseJson.data && responseJson.data.car_id) {",
+          "            pm.environment.set('car_id', responseJson.data.car_id);",
+          "        }",
+          "        ",
+          "        // Extract comparison_id from vehicle comparison response",
+          "        if (responseJson.data && responseJson.data.comparison_id) {",
+          "            pm.environment.set('comparison_id', responseJson.data.comparison_id);",
+          "        }",
+          "        ",
+          "        // Extract tip_id from tips and tricks response",
+          "        if (responseJson.data && responseJson.data.tip_id) {",
+          "            pm.environment.set('tip_id', responseJson.data.tip_id);",
+          "        }",
+          "        ",
+          "        // Extract file_id from file upload response",
+          "        if (responseJson.data && responseJson.data.file_id) {",
+          "            pm.environment.set('file_id', responseJson.data.file_id);",
+          "        }",
+          "        ",
+          "        // Extract order_id from order creation response",
+          "        if (responseJson.data && responseJson.data.order_id) {",
+          "            pm.environment.set('order_id', responseJson.data.order_id);",
+          "        }",
+          "        ",
+          "        // Extract review_id from review submission response",
+          "        if (responseJson.data && responseJson.data.review_id) {",
+          "            pm.environment.set('review_id', responseJson.data.review_id);",
+          "        }",
+          "        ",
+          "        // Extract chat_id from chat creation response",
+          "        if (responseJson.data && responseJson.data._id && responseJson.data.participants) {",
+          "            pm.environment.set('chat_id', responseJson.data._id);",
+          "        }",
+          "        ",
+          "        // Extract message_id from message response",
+          "        if (responseJson.data && responseJson.data._id && responseJson.data.message) {",
+          "            pm.environment.set('message_id', responseJson.data._id);",
+          "        }",
+          "        ",
+          "        // Extract razorpay_order_id from order creation response",
+          "        if (responseJson.orders && responseJson.orders.id) {",
+          "            pm.environment.set('razorpay_order_id', responseJson.orders.id);",
+          "        }",
+          "        ",
+          "        // Extract payment_id from payment verification response",
+          "        if (responseJson.data && responseJson.data.payment_id) {",
+          "            pm.environment.set('payment_id', responseJson.data.payment_id);",
+          "        }",
+          "        ",
+          "        // Extract refund_id from refund creation response",
+          "        if (responseJson.data && responseJson.data.refund_id) {",
+          "            pm.environment.set('refund_id', responseJson.data.refund_id);",
+          "        }",
+          "    } catch (e) {",
+          "        console.log('Error parsing response:', e);",
+          "    }",
+          "}"
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:3000",
+      "type": "string"
+    },
+    {
+      "key": "user_id",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "temp_user_id",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "verification_id",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "news_id",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "tutorial_video_id",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "car_id",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "comparison_id",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "tip_id",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "file_id",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "order_id",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "review_id",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "chat_id",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "message_id",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "razorpay_order_id",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "payment_id",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "refund_id",
+      "value": "",
+      "type": "string"
+    }
+  ]
+}

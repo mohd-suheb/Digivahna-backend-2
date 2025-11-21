@@ -1,0 +1,32 @@
+<html>
+<head>
+  <style>
+    body { font-family: Arial, sans-serif; color: #222; }
+    .container { padding: 20px; border: 1px solid #ddd; border-radius: 10px; }
+    .header { font-size: 20px; font-weight: bold; margin-bottom: 20px; color: #333; }
+    .content { font-size: 14px; line-height: 1.6; }
+    .signature { margin-top: 30px; }
+    .signature img { width: 120px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">Termination of Employment – Digivahan Digital India Pvt. Ltd.</div>
+    <div class="content">
+      <p>Dear <strong>{{employee_name}}</strong>,</p>
+      <p>This is to formally inform you that your employment with <strong>Digivahan Digital India Pvt. Ltd.</strong> will be terminated effective <strong>{{termination_date}}</strong>.</p>
+      <p>Despite regular feedback and guidance, we have observed that your performance has not met the expected standards of the organization.</p>
+      <p>Kindly ensure that you complete the handover of all responsibilities, assets, and documents before your last working day.</p>
+      <p>We thank you for the efforts made during your tenure and wish you success in your future endeavors.</p>
+      <div class="signature">
+        <p>Sincerely,</p>
+        <img src="{{digital_signature_url}}" alt="Signature">
+        <strong>{{sender_name}}</strong><br>
+        {{sender_role}}<br>
+        <a href="mailto:{{sender_email}}">{{sender_email}}</a><br>
+        <a href="https://www.digivahan.in">www.digivahan.in</a>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

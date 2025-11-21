@@ -1,0 +1,23 @@
+{
+  "about_us": {
+    "status": "Live",
+    "url": "https://digivahan.com/about-us"
+  },
+  "privacy_policy": {
+    "status": "Live",
+    "url": "https://digivahan.com/privacy-policy"
+  },
+  "data_protection_policy": {
+    "status": "Live",
+    "url": "https://digivahan.com/data-protection-policy"
+  },
+  "terms_conditions": {
+    "status": "Live",
+    "url": "https://digivahan.com/terms-conditions"
+  },
+  "refund_policy": {
+    "status": "Live",
+    "url": "https://digivahan.com/refund-policy"
+  }
+}
+
