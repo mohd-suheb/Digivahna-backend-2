@@ -169,14 +169,125 @@ const registerInit = async (req, res) => {
  * Verify OTP - Step 2: Verify OTP and create user account
  * POST /api/auth/register/verify-otp
  */
+// const verifyOtp = async (req, res) => {
+//    console.log("🔥 VERIFY OTP ROUTE HIT");
+//     console.log("Body Received:", req.body);
+//   try {
+   
+//     const { user_register_id, otp } = req.body;
+
+//     // Find temp user
+//     const tempUser = await TempUser.findByRegisterId(user_register_id);
+
+//     if (!tempUser) {
+//       return res.status(400).json({
+//         status: false,
+//         error_type: "userId",
+//         message: ERROR_MESSAGES.INVALID_USER_REGISTER_ID,
+//       });
+//     }
+
+//     // Verify OTP
+//     const otpResult = tempUser.verifyOtp(otp);
+
+//     if (!otpResult.success) {
+//       return res.status(400).json({
+//         status: false,
+//         error_type: "OTP",
+//         message: ERROR_MESSAGES.INVALID_OTP_CODE,
+//       });
+//     }
+
+//     // Save temp user with verification status
+//     await tempUser.save();
+
+//     // Create permanent user account
+//     const newUser = new User({
+//       basic_details: {
+//         first_name: tempUser.first_name,
+//         last_name: tempUser.last_name,
+//         email: tempUser.email,
+//         phone_number: tempUser.phone,
+//         password: tempUser.password,
+//         phone_number_verified: tempUser.otp_channel === "PHONE",
+//         is_phone_number_primary: tempUser.otp_channel === "PHONE",
+//         is_email_verified: tempUser.otp_channel === "EMAIL",
+//         is_email_primary: tempUser.otp_channel === "EMAIL",
+//         profile_completion_percent: 20, // Basic info completed
+//       },
+//       public_details: {
+//         nick_name: "",
+//         address: "",
+//         age: 0,
+//         gender: "",
+//       },
+//       old_passwords: {
+//         previous_password1: "",
+//         previous_password2: "",
+//         previous_password3: "",
+//         previous_password4: "",
+//       },
+//       live_tracking: {
+//         is_tracking_on: true, // Set to true as per new spec
+//       },
+//       is_active: true,
+//     });
+
+//     await newUser.save();
+
+//     // Generate JWT token
+//     const token = newUser.generateAuthToken();
+
+//     // Clean up temp user
+//     await TempUser.findByIdAndDelete(tempUser._id);
+
+//     // Prepare user response (without sensitive data) - simplified as per new spec
+//     const userResponse = {
+//       basic_details: {
+//         profile_pic_url: newUser.basic_details.profile_pic_url,
+//         first_name: newUser.basic_details.first_name,
+//         last_name: newUser.basic_details.last_name,
+//         phone_number: newUser.basic_details.phone_number,
+//         phone_number_verified: newUser.basic_details.phone_number_verified,
+//         is_phone_number_primary: newUser.basic_details.is_phone_number_primary,
+//         email: newUser.basic_details.email,
+//         is_email_verified: newUser.basic_details.is_email_verified,
+//         is_email_primary: newUser.basic_details.is_email_primary,
+//         password: "", // Never send password
+//         occupation: newUser.basic_details.occupation,
+//         profile_completion_percent:
+//           newUser.basic_details.profile_completion_percent,
+//       },
+//       live_tracking: newUser.live_tracking,
+//     };
+
+//     res.status(200).json({
+//       status: true,
+//       message: "OTP verified. Account created successfully.",
+//       user: userResponse,
+//     });
+//   } catch (error) {
+//     console.error("Verify OTP error:", error);
+//     res.status(500).json({
+//       status: false,
+//       error_type: "other",
+//       message: ERROR_MESSAGES.INTERNAL_SERVER_ERROR,
+//     });
+//   }
+// };
 const verifyOtp = async (req, res) => {
+  console.log("🔥 VERIFY OTP ROUTE HIT");
+  console.log("Body Received:", req.body);
+
   try {
     const { user_register_id, otp } = req.body;
 
-    // Find temp user
+    console.log("🔍 Finding TempUser for ID:", user_register_id);
+
     const tempUser = await TempUser.findByRegisterId(user_register_id);
 
     if (!tempUser) {
+      console.log("❌ TempUser NOT FOUND");
       return res.status(400).json({
         status: false,
         error_type: "userId",
@@ -184,10 +295,11 @@ const verifyOtp = async (req, res) => {
       });
     }
 
-    // Verify OTP
     const otpResult = tempUser.verifyOtp(otp);
+    console.log("🔐 OTP Verify Result:", otpResult);
 
     if (!otpResult.success) {
+      console.log("❌ Invalid OTP");
       return res.status(400).json({
         status: false,
         error_type: "OTP",
@@ -195,10 +307,10 @@ const verifyOtp = async (req, res) => {
       });
     }
 
-    // Save temp user with verification status
     await tempUser.save();
 
-    // Create permanent user account
+    console.log("👤 Creating new permanent user...");
+
     const newUser = new User({
       basic_details: {
         first_name: tempUser.first_name,
@@ -210,7 +322,7 @@ const verifyOtp = async (req, res) => {
         is_phone_number_primary: tempUser.otp_channel === "PHONE",
         is_email_verified: tempUser.otp_channel === "EMAIL",
         is_email_primary: tempUser.otp_channel === "EMAIL",
-        profile_completion_percent: 20, // Basic info completed
+        profile_completion_percent: 20,
       },
       public_details: {
         nick_name: "",
@@ -225,20 +337,19 @@ const verifyOtp = async (req, res) => {
         previous_password4: "",
       },
       live_tracking: {
-        is_tracking_on: true, // Set to true as per new spec
+        is_tracking_on: true,
       },
       is_active: true,
     });
 
     await newUser.save();
 
-    // Generate JWT token
+    console.log("✅ OTP verified & user created:", newUser._id);
+
     const token = newUser.generateAuthToken();
 
-    // Clean up temp user
     await TempUser.findByIdAndDelete(tempUser._id);
 
-    // Prepare user response (without sensitive data) - simplified as per new spec
     const userResponse = {
       basic_details: {
         profile_pic_url: newUser.basic_details.profile_pic_url,
@@ -250,10 +361,9 @@ const verifyOtp = async (req, res) => {
         email: newUser.basic_details.email,
         is_email_verified: newUser.basic_details.is_email_verified,
         is_email_primary: newUser.basic_details.is_email_primary,
-        password: "", // Never send password
+        password: "",
         occupation: newUser.basic_details.occupation,
-        profile_completion_percent:
-          newUser.basic_details.profile_completion_percent,
+        profile_completion_percent: newUser.basic_details.profile_completion_percent,
       },
       live_tracking: newUser.live_tracking,
     };
@@ -263,6 +373,7 @@ const verifyOtp = async (req, res) => {
       message: "OTP verified. Account created successfully.",
       user: userResponse,
     });
+
   } catch (error) {
     console.error("Verify OTP error:", error);
     res.status(500).json({

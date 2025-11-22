@@ -184,6 +184,18 @@ if (process.env.VERCEL === "1") {
     console.log(`💬 Socket.IO server running on http://localhost:${PORT}`);
   });
 
+
+  app.use((err, req, res, next) => {
+  console.error("🔥 API Error:", err);
+  res.status(500).json({
+    status: false,
+    error_type: "server",
+    message: err.message,
+    stack: err.stack
+  });
+});
+
+
   // Export server for potential use in other modules
   module.exports = { app, server, io };
 }

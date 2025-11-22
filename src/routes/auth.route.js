@@ -39,6 +39,10 @@ router.post(
 // User Registration OTP Verification - Step 2: Verify OTP and create account
 router.post(
   API_ROUTES.AUTH.REGISTER.VERIFY_OTP,
+  (req, res, next) => {
+    console.log("📩 VERIFY OTP ROUTE MIDDLEWARE — BODY:", req.body);
+    next();
+  },
   [
     commonValidations.userRegisterId("user_register_id"),
     commonValidations.otp("otp"),
