@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
+console.log("DB_URL =", process.env.DB_URL);
 const { initializeModels } = require("./models.js");
 
 // Load environment variables

@@ -1,8 +1,19 @@
+require("dotenv").config();
+
+
+
 const express = require("express");
 const cors = require("cors");
 const connectDB = require("../db_config/index.js");
 const { API_ROUTES, FULL_ROUTES, INFO_MESSAGES } = require("../constants");
 const { requestLogger } = require("./middleware/logger");
+
+
+// CORRECT IMPORT (only one)
+// const connectDB = require("./db_config");
+
+// Connect DB ONCE
+ connectDB();
 
 // Import routes
 const indexRoutes = require("./routes/index.route.js");
@@ -97,44 +108,44 @@ app.use(FULL_ROUTES.ACCESS_CODE.BASE, accessCodeRoutes);
 // app.use(FULL_ROUTES.REVIEW.BASE, reviewRoutes);
 // app.use(FULL_ROUTES.CHAT.BASE, chatRoutes);
 
-console.log("ENDPOINTS", {
-  indexRoutes: API_ROUTES.BASE,
-  authRoutes: API_ROUTES.AUTH.BASE,
-  deviceRoutes: API_ROUTES.DEVICE.BASE,
-  emailRoutes: API_ROUTES.EMAIL.BASE,
-  policiesRoutes: API_ROUTES.ADMIN.BASE,
-  qrRoutes: API_ROUTES.QR.BASE,
-  fuelRoutes: API_ROUTES.FUEL.BASE,
-  garageRoutes: API_ROUTES.GARAGE.BASE,
-  trendingCarsRoutes: API_ROUTES.TRENDING_CARS.BASE,
-  fetchTrendingRoutes: API_ROUTES.FETCH_TRENDING.BASE,
-  vehicleComparisonRoutes: API_ROUTES.VEHICLE_COMPARISON.BASE,
-  tipsTricksRoutes: API_ROUTES.TIPS_TRICKS.BASE,
-  getTipsRoutes: API_ROUTES.GET_TIPS.BASE,
-  newsRoutes: API_ROUTES.NEWS.BASE,
-  getNewsRoutes: API_ROUTES.GET_NEWS.BASE,
-  qrVideosRoutes: API_ROUTES.QR_VIDEOS.BASE,
-  uploadRoutes: API_ROUTES.UPLOAD.BASE,
-  userDeletionRoutes: API_ROUTES.USER.BASE,
-  updateUserRoutes: API_ROUTES.UPDATE_USER.BASE,
-  emergencyContactRoutes: API_ROUTES.EMERGENCY_CONTACT.BASE,
-  addressbookRoutes: API_ROUTES.ADDRESSBOOK.BASE,
-  primaryContactRoutes: API_ROUTES.PRIMARY_CONTACT.BASE,
-  changePasswordRoutes: API_ROUTES.CHANGE_PASSWORD.BASE,
-  getDetailsRoutes: API_ROUTES.GET_DETAILS.BASE,
-  notificationRoutes: API_ROUTES.NOTIFICATION.BASE,
-  notificationListRoutes: API_ROUTES.NOTIFICATION_LIST.BASE,
-  accessCodeRoutes: API_ROUTES.ACCESS_CODE.BASE,
-  vaultAccessRoutes: API_ROUTES.VAULT_ACCESS.BASE,
-  razorpayRoutes: API_ROUTES.RAZORPAY.BASE,
-  orderRoutes: API_ROUTES.ORDER.BASE,
-  reviewRoutes: API_ROUTES.REVIEW.BASE,
-  chatRoutes: API_ROUTES.CHAT.BASE,
+// console.log("ENDPOINTS", {
+//   indexRoutes: API_ROUTES.BASE,
+//   authRoutes: API_ROUTES.AUTH.BASE,
+//   deviceRoutes: API_ROUTES.DEVICE.BASE,
+//   emailRoutes: API_ROUTES.EMAIL.BASE,
+//   policiesRoutes: API_ROUTES.ADMIN.BASE,
+//   qrRoutes: API_ROUTES.QR.BASE,
+//   fuelRoutes: API_ROUTES.FUEL.BASE,
+//   garageRoutes: API_ROUTES.GARAGE.BASE,
+//   trendingCarsRoutes: API_ROUTES.TRENDING_CARS.BASE,
+//   fetchTrendingRoutes: API_ROUTES.FETCH_TRENDING.BASE,
+//   vehicleComparisonRoutes: API_ROUTES.VEHICLE_COMPARISON.BASE,
+//   tipsTricksRoutes: API_ROUTES.TIPS_TRICKS.BASE,
+//   getTipsRoutes: API_ROUTES.GET_TIPS.BASE,
+//   newsRoutes: API_ROUTES.NEWS.BASE,
+//   getNewsRoutes: API_ROUTES.GET_NEWS.BASE,
+//   qrVideosRoutes: API_ROUTES.QR_VIDEOS.BASE,
+//   uploadRoutes: API_ROUTES.UPLOAD.BASE,
+//   userDeletionRoutes: API_ROUTES.USER.BASE,
+//   updateUserRoutes: API_ROUTES.UPDATE_USER.BASE,
+//   emergencyContactRoutes: API_ROUTES.EMERGENCY_CONTACT.BASE,
+//   addressbookRoutes: API_ROUTES.ADDRESSBOOK.BASE,
+//   primaryContactRoutes: API_ROUTES.PRIMARY_CONTACT.BASE,
+//   changePasswordRoutes: API_ROUTES.CHANGE_PASSWORD.BASE,
+//   getDetailsRoutes: API_ROUTES.GET_DETAILS.BASE,
+//   notificationRoutes: API_ROUTES.NOTIFICATION.BASE,
+//   notificationListRoutes: API_ROUTES.NOTIFICATION_LIST.BASE,
+//   accessCodeRoutes: API_ROUTES.ACCESS_CODE.BASE,
+//   vaultAccessRoutes: API_ROUTES.VAULT_ACCESS.BASE,
+//   razorpayRoutes: API_ROUTES.RAZORPAY.BASE,
+//   orderRoutes: API_ROUTES.ORDER.BASE,
+//   reviewRoutes: API_ROUTES.REVIEW.BASE,
+//   chatRoutes: API_ROUTES.CHAT.BASE,
 
-  API_ROUTES: API_ROUTES,
-  FULL_ROUTES: FULL_ROUTES,
-  INFO_MESSAGES: INFO_MESSAGES,
-});
+//   API_ROUTES: API_ROUTES,
+//   FULL_ROUTES: FULL_ROUTES,
+//   INFO_MESSAGES: INFO_MESSAGES,
+// });
 
 // For Vercel serverless functions
 if (process.env.VERCEL === "1") {
@@ -156,6 +167,9 @@ if (process.env.VERCEL === "1") {
       credentials: true,
     },
   });
+
+  console.log("ENV TEST:", process.env.TEST);
+
 
   // Setup Socket.IO handlers
   const { setupSocketIO } = require("./socket/socketHandler.js");
