@@ -60,19 +60,19 @@ app.use(express.urlencoded({ extended: true, limit: "10mb" }));
 app.use(requestLogger);
 
 // Database connection middleware
-app.use(async (req, res, next) => {
-  try {
-    // Only connect if not already connected
-    if (require("mongoose").connection.readyState !== 1) {
-      await connectDB();
-    }
-    next();
-  } catch (error) {
-    console.error("Database connection error:", error);
-    // In serverless, continue without database for graceful degradation
-    next();
-  }
-});
+// app.use(async (req, res, next) => {
+//   try {
+//     // Only connect if not already connected
+//     if (require("mongoose").connection.readyState !== 1) {
+//       await connectDB();
+//     }
+//     next();
+//   } catch (error) {
+//     console.error("Database connection error:", error);
+//     // In serverless, continue without database for graceful degradation
+//     next();
+//   }
+// });
 
 // Use routes
 app.use(API_ROUTES.BASE, indexRoutes);
