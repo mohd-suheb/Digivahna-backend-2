@@ -23,7 +23,7 @@ const getNewsRoutes = require("./routes/getNews.route.js");
 const qrVideosRoutes = require("./routes/qrVideos.route.js");
 // const uploadRoutes = require("./routes/upload.route.js");
 // const userDeletionRoutes = require("./routes/userDeletion.route.js");
-// const updateUserRoutes = require("./routes/updateUser.route.js");
+// // const updateUserRoutes = require("./routes/updateUser.route.js");
 // const emergencyContactRoutes = require("./routes/emergencyContact.route.js");
 // const addressbookRoutes = require("./routes/addressbook.route.js");
 // const primaryContactRoutes = require("./routes/primaryContact.route.js");
@@ -114,22 +114,22 @@ console.log("ENDPOINTS", {
   newsRoutes: API_ROUTES.NEWS.BASE,
   getNewsRoutes: API_ROUTES.GET_NEWS.BASE,
   qrVideosRoutes: API_ROUTES.QR_VIDEOS.BASE,
-  // uploadRoutes: API_ROUTES.UPLOAD.BASE,
-  // userDeletionRoutes: API_ROUTES.USER.BASE,
-  // updateUserRoutes: API_ROUTES.UPDATE_USER.BASE,
-  // emergencyContactRoutes: API_ROUTES.EMERGENCY_CONTACT.BASE,
-  // addressbookRoutes: API_ROUTES.ADDRESSBOOK.BASE,
-  // primaryContactRoutes: API_ROUTES.PRIMARY_CONTACT.BASE,
-  // changePasswordRoutes: API_ROUTES.CHANGE_PASSWORD.BASE,
-  // getDetailsRoutes: API_ROUTES.GET_DETAILS.BASE,
-  // notificationRoutes: API_ROUTES.NOTIFICATION.BASE,
-  // notificationListRoutes: API_ROUTES.NOTIFICATION_LIST.BASE,
+  uploadRoutes: API_ROUTES.UPLOAD.BASE,
+  userDeletionRoutes: API_ROUTES.USER.BASE,
+  updateUserRoutes: API_ROUTES.UPDATE_USER.BASE,
+  emergencyContactRoutes: API_ROUTES.EMERGENCY_CONTACT.BASE,
+  addressbookRoutes: API_ROUTES.ADDRESSBOOK.BASE,
+  primaryContactRoutes: API_ROUTES.PRIMARY_CONTACT.BASE,
+  changePasswordRoutes: API_ROUTES.CHANGE_PASSWORD.BASE,
+  getDetailsRoutes: API_ROUTES.GET_DETAILS.BASE,
+  notificationRoutes: API_ROUTES.NOTIFICATION.BASE,
+  notificationListRoutes: API_ROUTES.NOTIFICATION_LIST.BASE,
   accessCodeRoutes: API_ROUTES.ACCESS_CODE.BASE,
-  // vaultAccessRoutes: API_ROUTES.VAULT_ACCESS.BASE,
-  // razorpayRoutes: API_ROUTES.RAZORPAY.BASE,
-  // orderRoutes: API_ROUTES.ORDER.BASE,
-  // reviewRoutes: API_ROUTES.REVIEW.BASE,
-  // chatRoutes: API_ROUTES.CHAT.BASE,
+  vaultAccessRoutes: API_ROUTES.VAULT_ACCESS.BASE,
+  razorpayRoutes: API_ROUTES.RAZORPAY.BASE,
+  orderRoutes: API_ROUTES.ORDER.BASE,
+  reviewRoutes: API_ROUTES.REVIEW.BASE,
+  chatRoutes: API_ROUTES.CHAT.BASE,
 
   API_ROUTES: API_ROUTES,
   FULL_ROUTES: FULL_ROUTES,

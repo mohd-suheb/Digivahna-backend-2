@@ -39,7 +39,7 @@ const registerInit = async (req, res) => {
     // If hit_type is "check", only check user existence
     if (hit_type === "check") {
       if (existingUser) {
-        // Check which field already exists
+        //  Check which field already exists
         if (existingUser.basic_details.email === email) {
           return res.status(400).json({
             status: false,
