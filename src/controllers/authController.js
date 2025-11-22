@@ -160,7 +160,7 @@ const registerInit = async (req, res) => {
     res.status(500).json({
       status: false,
       error_type: "other",
-      message: "error message1",
+      message: error.message,
     });
   }
 };
@@ -268,8 +268,7 @@ const verifyOtp = async (req, res) => {
     res.status(500).json({
       status: false,
       error_type: "other",
-      message: "error message2",
-      
+      message: ERROR_MESSAGES.INTERNAL_SERVER_ERROR,
     });
   }
 };
@@ -370,7 +369,7 @@ const resendOtp = async (req, res) => {
     res.status(500).json({
       status: false,
       error_type: "other",
-      message: "error message3",
+      message: ERROR_MESSAGES.INTERNAL_SERVER_ERROR,
     });
   }
 };
@@ -538,7 +537,7 @@ const signIn = async (req, res) => {
     res.status(500).json({
       status: false,
       error_type: "other",
-      message: "error message4",
+      message: ERROR_MESSAGES.INTERNAL_SERVER_ERROR,
     });
   }
 };
@@ -655,7 +654,7 @@ const otpBasedLogin = async (req, res) => {
     res.status(500).json({
       status: false,
       error_type: "other",
-      message: "error message5",
+      message: ERROR_MESSAGES.INTERNAL_SERVER_ERROR,
     });
   }
 };
@@ -810,7 +809,7 @@ const verifyLoginOtp = async (req, res) => {
     res.status(500).json({
       status: false,
       error_type: "other",
-      message: "error message6",
+      message: ERROR_MESSAGES.INTERNAL_SERVER_ERROR,
     });
   }
 };
@@ -930,7 +929,7 @@ const requestResetPassword = async (req, res) => {
     res.status(500).json({
       status: false,
       error_type: "other",
-      message: "error message7",
+      message: ERROR_MESSAGES.INTERNAL_SERVER_ERROR,
     });
   }
 };
@@ -1104,7 +1103,7 @@ const verifyResetOtp = async (req, res) => {
     res.status(500).json({
       status: false,
       error_type: "other",
-      message: "error message8",
+      message: ERROR_MESSAGES.INTERNAL_SERVER_ERROR,
     });
   }
 };
@@ -1208,7 +1207,7 @@ const verifyRequest = async (req, res) => {
     res.status(500).json({
       status: false,
       error_type: "other",
-      message: "error message9",
+      message: ERROR_MESSAGES.INTERNAL_SERVER_ERROR,
     });
   }
 };
@@ -1309,7 +1308,7 @@ const verifyConfirm = async (req, res) => {
     res.status(500).json({
       status: false,
       error_type: "other",
-      message: "error message10",
+      message: ERROR_MESSAGES.INTERNAL_SERVER_ERROR,
     });
   }
 };
@@ -1369,7 +1368,7 @@ const suspendUser = async (req, res) => {
     console.error("Suspend user error:", error);
     res.status(500).json({
       status: false,
-      message: "error message11",
+      message: ERROR_MESSAGES.INTERNAL_SERVER_ERROR,
     });
   }
 };
